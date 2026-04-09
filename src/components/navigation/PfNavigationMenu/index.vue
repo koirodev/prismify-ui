@@ -77,6 +77,10 @@ export type PfNavigationMenuItemChip =
       show?: boolean;
     };
 
+type PfNavigationMenuSlots = Readonly<
+  Record<string, ((props?: Record<string, unknown>) => unknown) | undefined>
+>;
+
 export interface PfNavigationMenuChildUi {
   link?: string;
   icon?: string;
@@ -243,7 +247,7 @@ defineSlots<{
 }>();
 
 const attrs = useAttrs();
-const slots = useSlots();
+const slots = useSlots() as PfNavigationMenuSlots;
 const modelBound = usePfVModelBound();
 
 const rootRef = ref<HTMLElement | null>(null);

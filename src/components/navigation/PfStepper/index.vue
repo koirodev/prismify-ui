@@ -7,7 +7,6 @@ import {
   useSlots,
   watch,
   type Component,
-  type Slots,
 } from 'vue';
 import { usePfVModelBound } from '../../../composables/usePfVModelBound';
 import PfIcon from '../../element/PfIcon/index.vue';
@@ -69,6 +68,10 @@ export type PfStepperUi = Partial<{
   content: string;
 }>;
 
+type PfStepperSlots = Readonly<
+  Record<string, ((props?: Record<string, unknown>) => unknown) | undefined>
+>;
+
 defineOptions({ inheritAttrs: false });
 
 const props = withDefaults(
@@ -111,7 +114,7 @@ defineSlots<{
 }>();
 
 const attrs = useAttrs();
-const slots: Slots = useSlots();
+const slots = useSlots() as PfStepperSlots;
 const vModelBound = usePfVModelBound();
 
 const localValue = ref<string | number | undefined>(

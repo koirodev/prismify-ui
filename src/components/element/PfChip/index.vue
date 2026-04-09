@@ -5,6 +5,7 @@ import {
   resolveDynamicComponent,
   useSlots,
   type Component,
+  type VNode,
 } from 'vue';
 
 export type PfChipColor =
@@ -71,9 +72,9 @@ const resolvedTag = computed(() => {
 });
 
 const hasDefaultContent = computed((): boolean => {
-  const d = slots.default?.();
+  const d = slots.default?.({});
   if (d == null) return false;
-  return d.some((vn) => {
+  return d.some((vn: VNode) => {
     if (vn == null || typeof vn !== 'object') return false;
     if (!('type' in vn)) return true;
     return vn.type !== Comment;

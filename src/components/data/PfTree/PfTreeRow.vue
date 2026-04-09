@@ -7,6 +7,7 @@ import {
   useSlots,
   type Component,
   type PropType,
+  type Slot,
   type VNode,
 } from 'vue';
 import PfIcon from '../../element/PfIcon/index.vue';
@@ -66,7 +67,7 @@ function vnodeHasRenderableContent(n: VNode | undefined | null): boolean {
 }
 
 function slotHasRenderableContent(
-  fn: ((p?: unknown) => VNode[]) | undefined,
+  fn: Slot | undefined,
   slotProps?: unknown
 ): boolean {
   if (typeof fn !== 'function') return false;

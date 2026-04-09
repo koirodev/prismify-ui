@@ -547,7 +547,7 @@ defineExpose({
       }"
     >
       <div
-        v-if="slots.leading"
+        v-if="hasNamedSlot('leading')"
         class="pfTabs__toolbarSlot pfTabs__toolbarSlot_leading"
       >
         <slot name="leading" />
@@ -632,7 +632,7 @@ defineExpose({
       </div>
 
       <div
-        v-if="slots.trailing"
+        v-if="hasNamedSlot('trailing')"
         class="pfTabs__toolbarSlot pfTabs__toolbarSlot_trailing"
       >
         <slot name="trailing" />
@@ -657,7 +657,7 @@ defineExpose({
           <template v-if="item.slot && hasNamedSlot(item.slot)">
             <slot :name="item.slot" :item="item" :index="index" />
           </template>
-          <template v-else-if="slots.content">
+          <template v-else-if="hasNamedSlot('content')">
             <slot name="content" :item="item" :index="index" />
           </template>
           <template v-else>

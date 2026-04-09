@@ -286,9 +286,13 @@ function onScrollResize() {
   updatePos();
 }
 
-const indexedGroups = computed(() =>
-  props.groups.map((group, gi) => ({ group, gi }))
-);
+function groupItems(groupIndex: number): PfContextMenuItem[] {
+  return props.groups[groupIndex] ?? [];
+}
+
+function itemAt(groupIndex: number, itemIndex: number): PfContextMenuItem {
+  return groupItems(groupIndex)[itemIndex]!;
+}
 
 watch(
   () => props.anchorEl,
@@ -330,35 +334,40 @@ onBeforeUnmount(() => {
     @pointerleave="mode === 'sub' ? onSubPanelLeave() : undefined"
   >
     <div class="pfContextMenuItems__viewport" :class="ui?.viewport">
-      <template v-for="{ group, gi } in indexedGroups" :key="`g-${gi}`">
+      <template v-for="gi in groups.length" :key="`g-${gi - 1}`">
         <div
-          v-if="gi > 0"
+          v-if="gi > 1"
           class="pfContextMenuItems__divider"
           :class="ui?.separator"
           role="separator"
           aria-hidden="true"
         />
         <div class="pfContextMenuItems__group" :class="ui?.group" role="group">
-          <template v-for="(item, ii) in group" :key="itemKey(gi, ii)">
+          <template
+            v-for="ii in groupItems(gi - 1).length"
+            :key="itemKey(gi - 1, ii - 1)"
+          >
             <div
-              v-if="item.type === 'separator'"
+              v-if="itemAt(gi - 1, ii - 1).type === 'separator'"
               class="pfContextMenuItems__divider"
-              :class="[ui?.separator, item.class]"
+              :class="[ui?.separator, itemAt(gi - 1, ii - 1).class]"
               role="separator"
               aria-hidden="true"
             />
             <div
-              v-else-if="item.type === 'label'"
+              v-else-if="itemAt(gi - 1, ii - 1).type === 'label'"
               class="pfContextMenuItems__groupLabel"
-              :class="[ui?.label, item.class]"
+              :class="[ui?.label, itemAt(gi - 1, ii - 1).class]"
               role="presentation"
             >
-              {{ item.label }}
+              {{ itemAt(gi - 1, ii - 1).label }}
             </div>
             <div
-              :ref="(el) => setRowEl(itemKey(gi, ii), el as Element)"
+              :ref="(el) => setRowEl(itemKey(gi - 1, ii - 1), el as Element)"
               class="pfContextMenuItems__row"
-              @pointerenter="onRowPointerEnter(itemKey(gi, ii), item)"
+              @pointerenter="
+                onRowPointerEnter(itemKey(gi - 1, ii - 1), itemAt(gi - 1, ii - 1))
+              "
               @pointerleave="onRowLeave()"
             >
               <button
@@ -366,67 +375,85 @@ onBeforeUnmount(() => {
                 class="pfContextMenuItems__item pfContextMenuItems__item_interactive"
                 :class="[
                   ui?.item,
-                  item.class,
-                  item.disabled && 'pfContextMenuItems__item_disabled',
-                  itemColorClass(item.color),
+                  itemAt(gi - 1, ii - 1).class,
+                  itemAt(gi - 1, ii - 1).disabled &&
+                    'pfContextMenuItems__item_disabled',
+                  itemColorClass(itemAt(gi - 1, ii - 1).color),
                 ]"
                 :role="
-                  item.type === 'checkbox' ? 'menuitemcheckbox' : 'menuitem'
+                  itemAt(gi - 1, ii - 1).type === 'checkbox'
+                    ? 'menuitemcheckbox'
+                    : 'menuitem'
                 "
                 :aria-checked="
-                  item.type === 'checkbox'
-                    ? item.checked
+                  itemAt(gi - 1, ii - 1).type === 'checkbox'
+                    ? itemAt(gi - 1, ii - 1).checked
                       ? 'true'
                       : 'false'
                     : undefined
                 "
-                :aria-disabled="item.disabled ? 'true' : undefined"
-                :disabled="item.disabled"
-                @click="onItemActivate($event, item)"
+                :aria-disabled="
+                  itemAt(gi - 1, ii - 1).disabled ? 'true' : undefined
+                "
+                :disabled="itemAt(gi - 1, ii - 1).disabled"
+                @click="onItemActivate($event, itemAt(gi - 1, ii - 1))"
               >
                 <template v-if="slots.item">
                   <span class="pfContextMenuItems__slotItem">
-                    <slot name="item" :item="item" />
+                    <slot name="item" :item="itemAt(gi - 1, ii - 1)" />
                   </span>
                 </template>
                 <template v-else>
                   <span
-                    v-if="item.slot && slots[`${item.slot}-leading`]"
+                    v-if="
+                      itemAt(gi - 1, ii - 1).slot &&
+                      slots[`${itemAt(gi - 1, ii - 1).slot}-leading`]
+                    "
                     class="pfContextMenuItems__leading"
                     :class="ui?.itemLeadingIcon"
                   >
-                    <slot :name="`${item.slot}-leading`" />
+                    <slot :name="`${itemAt(gi - 1, ii - 1).slot}-leading`" />
                   </span>
                   <span
                     v-else-if="slots['item-leading']"
                     class="pfContextMenuItems__leading"
                     :class="ui?.itemLeadingIcon"
                   >
-                    <slot name="item-leading" :item="item" />
+                    <slot name="item-leading" :item="itemAt(gi - 1, ii - 1)" />
                   </span>
                   <span
-                    v-else-if="avatarBindings(item.avatar, item.icon)"
+                    v-else-if="
+                      avatarBindings(
+                        itemAt(gi - 1, ii - 1).avatar,
+                        itemAt(gi - 1, ii - 1).icon
+                      )
+                    "
                     class="pfContextMenuItems__leading"
                     :class="ui?.itemLeadingAvatar"
                   >
                     <PfAvatar
-                      v-bind="avatarBindings(item.avatar, item.icon)!"
+                      v-bind="
+                        avatarBindings(
+                          itemAt(gi - 1, ii - 1).avatar,
+                          itemAt(gi - 1, ii - 1).icon
+                        )!
+                      "
                     />
                   </span>
                   <span
-                    v-else-if="item.icon"
+                    v-else-if="itemAt(gi - 1, ii - 1).icon"
                     class="pfContextMenuItems__leading"
                     :class="ui?.itemLeadingIcon"
                   >
-                    <PfIcon :name="item.icon" :size="iconSize" />
+                    <PfIcon :name="itemAt(gi - 1, ii - 1).icon!" :size="iconSize" />
                   </span>
                   <span
-                    v-if="item.type === 'checkbox'"
+                    v-if="itemAt(gi - 1, ii - 1).type === 'checkbox'"
                     class="pfContextMenuItems__check"
                     aria-hidden="true"
                   >
                     <PfIcon
-                      v-if="item.checked"
+                      v-if="itemAt(gi - 1, ii - 1).checked"
                       :name="checkedIcon"
                       :size="iconSize"
                     />
@@ -436,34 +463,43 @@ onBeforeUnmount(() => {
                     :class="ui?.itemLabel"
                   >
                     <span
-                      v-if="item.slot && slots[`${item.slot}-label`]"
+                    v-if="
+                      itemAt(gi - 1, ii - 1).slot &&
+                      slots[`${itemAt(gi - 1, ii - 1).slot}-label`]
+                    "
                       class="pfContextMenuItems__itemLabel"
                     >
-                      <slot :name="`${item.slot}-label`" />
+                      <slot :name="`${itemAt(gi - 1, ii - 1).slot}-label`" />
                     </span>
                     <span
                       v-else-if="slots['item-label']"
                       class="pfContextMenuItems__itemLabel"
                     >
-                      <slot name="item-label" :item="item" />
+                      <slot name="item-label" :item="itemAt(gi - 1, ii - 1)" />
                     </span>
                     <span v-else class="pfContextMenuItems__itemLabel">
-                      {{ item.label }}
+                      {{ itemAt(gi - 1, ii - 1).label }}
                     </span>
                   </span>
                   <span
-                    v-if="item.slot && slots[`${item.slot}-trailing`]"
+                    v-if="
+                      itemAt(gi - 1, ii - 1).slot &&
+                      slots[`${itemAt(gi - 1, ii - 1).slot}-trailing`]
+                    "
                     class="pfContextMenuItems__trailing"
                     :class="ui?.itemTrailing"
                   >
-                    <slot :name="`${item.slot}-trailing`" />
+                    <slot :name="`${itemAt(gi - 1, ii - 1).slot}-trailing`" />
                   </span>
                   <span
                     v-else-if="slots['item-trailing']"
                     class="pfContextMenuItems__trailing"
                     :class="ui?.itemTrailing"
                   >
-                    <slot name="item-trailing" :item="item" />
+                    <slot
+                      name="item-trailing"
+                      :item="itemAt(gi - 1, ii - 1)"
+                    />
                   </span>
                   <span
                     v-else
@@ -473,9 +509,9 @@ onBeforeUnmount(() => {
                     <PfIcon
                       v-if="
                         externalIcon &&
-                        item.to != null &&
-                        isExternalItem(item) &&
-                        item.external !== false
+                        itemAt(gi - 1, ii - 1).to != null &&
+                        isExternalItem(itemAt(gi - 1, ii - 1)) &&
+                        itemAt(gi - 1, ii - 1).external !== false
                       "
                       :name="externalIcon"
                       :size="iconSize"
@@ -483,12 +519,12 @@ onBeforeUnmount(() => {
                       :class="ui?.itemLabelExternalIcon"
                     />
                     <span
-                      v-if="item.kbds?.length"
+                      v-if="itemAt(gi - 1, ii - 1).kbds?.length"
                       class="pfContextMenuItems__kbds"
                       :class="ui?.itemTrailingKbds"
                     >
                       <PfKbd
-                        v-for="(k, ki) in item.kbds"
+                        v-for="(k, ki) in itemAt(gi - 1, ii - 1).kbds"
                         :key="ki"
                         :value="k"
                         :size="kbdSize"
@@ -496,7 +532,7 @@ onBeforeUnmount(() => {
                       />
                     </span>
                     <PfIcon
-                      v-if="hasChildren(item)"
+                      v-if="hasChildren(itemAt(gi - 1, ii - 1))"
                       name="angleSmallRight"
                       :size="iconSize"
                       class="pfContextMenuItems__subChevron"
@@ -507,12 +543,12 @@ onBeforeUnmount(() => {
               <Transition name="pfContextMenuSubmenu">
                 <PfContextMenuItems
                   v-if="
-                    hasChildren(item) &&
-                    openSubKey === itemKey(gi, ii) &&
-                    item.children
+                    hasChildren(itemAt(gi - 1, ii - 1)) &&
+                    openSubKey === itemKey(gi - 1, ii - 1) &&
+                    itemAt(gi - 1, ii - 1).children
                   "
                   mode="sub"
-                  :groups="normalizeChildGroups(item.children)"
+                  :groups="normalizeChildGroups(itemAt(gi - 1, ii - 1).children!)"
                   :size="size"
                   :ui="ui"
                   :close-root="closeRoot"
@@ -520,7 +556,7 @@ onBeforeUnmount(() => {
                   :press-open-delay="pressOpenDelay"
                   :submenu-close-delay="submenuCloseDelay"
                   :external-icon="externalIcon"
-                  :anchor-el="rowEls[itemKey(gi, ii)] ?? null"
+                  :anchor-el="rowEls[itemKey(gi - 1, ii - 1)] ?? null"
                 />
               </Transition>
             </div>
