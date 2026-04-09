@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.vue",
+    "src/**/*.tsx",
+    ".storybook/**/*.ts",
+    "scripts/**/*.ts",
+    "*.config.ts",
+    "eslint.config.ts",
+    "playground/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist", "storybook-static"]
+}

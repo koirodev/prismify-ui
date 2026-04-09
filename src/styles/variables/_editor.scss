@@ -1,0 +1,34 @@
+:root {
+  /* PfEditor: surface, border and typography */
+  --pf-editor-surface: var(--pf-color-surface);
+  --pf-editor-text: var(--pf-color-text);
+  --pf-editor-muted: var(--pf-color-muted);
+  --pf-editor-border: var(--pf-border-color);
+  /* Border around the whole PfEditor; default is no input-like frame. */
+  --pf-editor-chrome-border: transparent;
+  --pf-editor-radius: var(--pf-radius-md);
+  --pf-editor-font-size: var(--pf-font-size-sm);
+  --pf-editor-line-height: var(--pf-line-height-lg);
+
+  /* PfEditor: base geometry */
+  --pf-editor-min-height: 14rem;
+  --pf-editor-padding-x: var(--pf-space-md);
+  --pf-editor-padding-y: var(--pf-space-md);
+
+  /* PfEditorToolbar */
+  --pf-editor-toolbar-gap: var(--pf-space-xs);
+  --pf-editor-toolbar-surface: var(--pf-color-surface);
+  --pf-editor-toolbar-shadow: 0 var(--pf-space-xs) var(--pf-space-lg)
+    color-mix(in srgb, var(--pf-color-text) 12%, transparent);
+
+  /* PfEditor*Menu */
+  --pf-editor-menu-z-index: 1200;
+  --pf-editor-menu-offset-x: var(--pf-space-sm);
+  --pf-editor-menu-offset-y: calc(var(--pf-space-sm) + 2rem);
+  --pf-editor-menu-min-width: 12rem;
+  --pf-editor-menu-max-width: 18rem;
+  --pf-editor-menu-max-height: 18rem;
+  --pf-editor-menu-surface: var(--pf-color-surface);
+  --pf-editor-menu-shadow: 0 var(--pf-space-xs) var(--pf-space-lg)
+    color-mix(in srgb, var(--pf-color-text) 12%, transparent);
+}

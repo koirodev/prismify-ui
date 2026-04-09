@@ -1,0 +1,11 @@
+// PfTimeline: gaps, separator thickness, pending background (muted by default)
+:root {
+  --pf-timeline-root-gap: var(--pf-space-xs);
+  --pf-timeline-item-gap: var(--pf-space-md);
+  --pf-timeline-separator-thickness: 2px;
+  --pf-timeline-separator-pending-bg: color-mix(
+    in srgb,
+    var(--pf-color-muted) 35%,
+    var(--pf-color-surface)
+  );
+}

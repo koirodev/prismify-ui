@@ -1,0 +1,11 @@
+// PfBreadcrumb
+:root {
+  --pf-breadcrumb-gap: 0.375rem;
+  --pf-breadcrumb-font-size: var(--pf-font-size-sm);
+  --pf-breadcrumb-font-weight: var(--pf-font-weight-medium);
+  --pf-breadcrumb-font-weight-current: var(--pf-font-weight-bold);
+  --pf-breadcrumb-color-muted: var(--pf-color-muted);
+  --pf-breadcrumb-color-current: var(--pf-color-primary);
+  --pf-breadcrumb-link-gap: 0.375rem;
+  --pf-breadcrumb-separator-color: var(--pf-color-muted);
+}

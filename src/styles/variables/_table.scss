@@ -1,0 +1,29 @@
+// PfTable: sizes, borders, sticky zones, loading indicator
+:root {
+  --pf-table-border-color: var(--pf-border-color);
+  --pf-table-cell-padding-x: var(--pf-space-md);
+  --pf-table-cell-padding-y: var(--pf-space-sm);
+  --pf-table-header-font-size: var(--pf-font-size-sm);
+  --pf-table-header-font-weight: var(--pf-font-weight-bold);
+  --pf-table-cell-font-size: var(--pf-font-size-sm);
+  --pf-table-sticky-bg: color-mix(
+    in srgb,
+    var(--pf-color-surface) 78%,
+    transparent
+  );
+  --pf-table-sticky-z-index: 1;
+  --pf-table-pin-z-index: 2;
+  --pf-table-row-hover-bg: color-mix(
+    in srgb,
+    var(--pf-color-muted) 12%,
+    transparent
+  );
+  --pf-table-row-selected-bg: color-mix(
+    in srgb,
+    var(--pf-color-muted) 18%,
+    transparent
+  );
+  --pf-table-loading-line-height: 1px;
+  --pf-table-loading-line-duration: 2s;
+  --pf-table-loading-line-easing: ease-in-out;
+}

@@ -1,0 +1,21 @@
+// PfFileUpload — zone background, circle under icon, drag overlay
+:root {
+  --pf-file-upload-zone-bg: transparent;
+  --pf-file-upload-icon-circle-bg: color-mix(
+    in srgb,
+    var(--pf-color-primary) 16%,
+    var(--pf-color-surface)
+  );
+  --pf-file-upload-hover-overlay: color-mix(
+    in srgb,
+    var(--pf-color-muted) 12%,
+    transparent
+  );
+  --pf-file-upload-drag-overlay: color-mix(
+    in srgb,
+    var(--pf-color-primary) 10%,
+    transparent
+  );
+  --pf-file-upload-min-height: 12rem;
+  --pf-file-upload-grid-cell-min: 5rem;
+}

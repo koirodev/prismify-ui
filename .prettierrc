@@ -1,0 +1,11 @@
+{
+  "singleQuote": true,
+  "semi": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "checkIgnorePragma": true,
+  "endOfLine": "lf",
+  "printWidth": 80,
+  "htmlWhitespaceSensitivity": "ignore",
+  "proseWrap": "never"
+}

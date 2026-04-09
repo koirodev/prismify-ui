@@ -1,0 +1,220 @@
+# prismify-ui
+
+> Vue 3 UI component library for admin interfaces: **SCSS-only** styles in SFCs, design tokens as **`--pf-*`** CSS variables on `:root`, **no Tailwind** in the library. Works with **plain Vue 3** and **Nuxt 4**. MIT. Published as **`prismify-ui`** on npm. **No Reka UI** — components are custom-built.
+
+**Repository:** https://github.com/koirodev/prismify-ui
+
+**Raw docs base (default branch `main`):** `https://raw.githubusercontent.com/koirodev/prismify-ui/main/`
+
+---
+
+## Installation (Vue & Nuxt)
+
+- [Installation and usage](https://raw.githubusercontent.com/koirodev/prismify-ui/main/docs/installation.md): Install from npm, peer dependencies, **`prismifyPlugin`**, import **`prismify-ui/style.css`**, **`PfApp`** shell, tree-shaking imports, Nuxt 4 **`css`** + plugin setup.
+
+---
+
+## Getting started
+
+- [README](https://raw.githubusercontent.com/koirodev/prismify-ui/main/README.md): Package overview, peer summary, documentation links.
+- [Documentation index](https://raw.githubusercontent.com/koirodev/prismify-ui/main/docs/README.md): Entry point for **`docs/`**.
+- [Theming and design tokens](https://raw.githubusercontent.com/koirodev/prismify-ui/main/docs/theming.md): Overriding **`--pf-*`**, color/typography/layout tables, **`PfHeader`** / **`PfMain`**, input/switch/slider/select tokens, animation, SCSS entry **`prismify-ui/styles`**.
+- [Library development](https://raw.githubusercontent.com/koirodev/prismify-ui/main/docs/library-development.md): Storybook categories, build, tests, icons pipeline, semver and alpha releases.
+
+---
+
+## Conventions (for contributors and AI)
+
+- **Component prefix:** **`Pf*`** (e.g. **`PfButton`**). Register globally via **`app.use(prismifyPlugin)`** or named imports from **`prismify-ui`**.
+- **Styles:** Single-file components use **`lang="scss"`** only; do not add Tailwind or other CSS frameworks inside library components.
+- **Theming:** Use **`var(--pf-*)`**; token sources live in **`src/styles/variables/*`**, aggregated in **`src/styles/_variables.scss`**. Do not use **`$pf-*`** SCSS variables for consumer theming.
+- **BEM (scoped):** Block name = camelCase without **`Pf`** (**`PfButton`** → **`pfButton`**). Pattern **`block__element_modifier`** (one **`_`** before a modifier).
+- **Icons:** **`PfIcon`** — **`name`** ∈ **`PfIconName`** / **`PF_ICON_NAMES`** (glyphs from **`src/icons/svg/`**); **`size`** ∈ **`PfIconSize`** / **`PF_ICON_SIZES`** / **`--pf-icon-size-*`**.
+- **Storybook:** Stories as **`*.stories.ts`**, title **`'<Category>/<PfComponent>'`** (see **`docs/library-development.md`**).
+- **Build:** Library **`vite.lib.config.ts`**; peers listed in **`rollupOptions.external`** (Vue, vue-router, `@internationalized/*`, `@tanstack/vue-table`, TipTap is bundled as configured — verify **`package.json`**).
+
+---
+
+## Components (source folders on GitHub)
+
+Each line links to the component folder (**`tree/main/...`**). Implementation details are in **`index.vue`** inside that folder. Storybook: **`npm run storybook`** in the repo.
+
+### Element
+
+- [PfAlert](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfAlert): Inline or block alert with optional avatar, actions, and dismiss.
+- [PfAvatar](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfAvatar): Circular avatar with image, fallback, and size variants.
+- [PfAvatarGroup](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfAvatarGroup): Stacked overlapping avatars with overflow indicator.
+- [PfBadge](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfBadge): Small status or count badge on inline content.
+- [PfBanner](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfBanner): Dismissible top-of-page or section banner.
+- [PfButton](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfButton): Primary UI button with variants, sizes, icons, loading.
+- [PfCard](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfCard): Card container with slots for header, body, footer.
+- [PfChip](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfChip): Compact chip or pill for tags and filters.
+- [PfCollapsible](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfCollapsible): Expand/collapse region with trigger.
+- [PfContentSearchButton](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfContentSearchButton): Button styled to open documentation-style content search.
+- [PfFieldGroup](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfFieldGroup): Groups button-like or field-adjacent controls in a row.
+- [PfIcon](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfIcon): Inline SVG icons from the built-in glyph set.
+- [PfKbd](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfKbd): Keyboard shortcut display using **`usePfKbd`** / **`PF_KBD_GLYPHS`**.
+- [PfProgress](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfProgress): Horizontal or vertical progress indicator.
+- [PfSeparator](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfSeparator): Visual divider between regions.
+- [PfSkeleton](https://github.com/koirodev/prismify-ui/tree/main/src/components/element/PfSkeleton): Loading placeholder blocks.
+
+### Form
+
+- [PfCalendar](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfCalendar): Calendar grid for date/range selection (**peer:** `@internationalized/date`). Locale from **`PfApp`** if not set.
+- [PfCheckbox](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfCheckbox): Single checkbox with optional card variant.
+- [PfCheckboxGroup](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfCheckboxGroup): Group of related checkboxes.
+- [PfColorPicker](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfColorPicker): Color selection UI.
+- [PfFileUpload](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfFileUpload): File dropzone and file list with remove.
+- [PfForm](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfForm): Form wrapper with submit/validate integration.
+- [PfFormField](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfFormField): Label, hint, and error layout for inputs.
+- [PfInput](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfInput): Text input with overlay styling and optional **`animatedText`** character animation (**`--pf-input-char-*`**).
+- [PfTextarea](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfTextarea): Multiline input with similar overlay/animation patterns as **`PfInput`**.
+- [PfInputDate](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfInputDate): Date field combining input and calendar UX.
+- [PfInputTime](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfInputTime): Time selection input.
+- [PfInputNumber](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfInputNumber): Numeric input with steppers (**peer:** `@internationalized/number`).
+- [PfInputMenu](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfInputMenu): Autocomplete-style input with suggestion list.
+- [PfInputTags](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfInputTags): Token/tag input field.
+- [PfPinInput](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfPinInput): OTP-style multi-cell input.
+- [PfRadio](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfRadio): Single radio control with card variant support.
+- [PfRadioGroup](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfRadioGroup): Radio group for one-of-many choice.
+- [PfSelect](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfSelect): Custom select with Teleport panel, native/options/multiple modes, **`usePfVModelBound`** pattern.
+- [PfSelectMenu](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfSelectMenu): Searchable list select for rich options.
+- [PfSlider](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfSlider): Range slider with optional built-in tooltip (**`--pf-slider-*`**).
+- [PfSwitch](https://github.com/koirodev/prismify-ui/tree/main/src/components/form/PfSwitch): Toggle switch (**`--pf-switch-*`**).
+
+### Layout
+
+- [PfApp](https://github.com/koirodev/prismify-ui/tree/main/src/components/layout/PfApp): Root app provider: **`locale`**, **`dir`**, portal targets, toaster, tooltip provider; **`PfCalendar`** reads locale from here.
+- [PfContainer](https://github.com/koirodev/prismify-ui/tree/main/src/components/layout/PfContainer): Max-width content container with responsive padding.
+- [PfHeader](https://github.com/koirodev/prismify-ui/tree/main/src/components/layout/PfHeader): App header; height tied to **`--pf-header-height`** for **`PfMain`** / **`PfError`** layout.
+- [PfMain](https://github.com/koirodev/prismify-ui/tree/main/src/components/layout/PfMain): Main content area filling viewport below header.
+- [PfFooter](https://github.com/koirodev/prismify-ui/tree/main/src/components/layout/PfFooter): Page footer with slots for sections.
+- [PfError](https://github.com/koirodev/prismify-ui/tree/main/src/components/layout/PfError): Centered error page layout.
+
+### Data
+
+- [PfAccordion](https://github.com/koirodev/prismify-ui/tree/main/src/components/data/PfAccordion): Expandable sections list.
+- [PfEmpty](https://github.com/koirodev/prismify-ui/tree/main/src/components/data/PfEmpty): Empty state with icon, title, and actions.
+- [PfScrollArea](https://github.com/koirodev/prismify-ui/tree/main/src/components/data/PfScrollArea): Custom-styled scroll container.
+- [PfTable](https://github.com/koirodev/prismify-ui/tree/main/src/components/data/PfTable): Data table built on **TanStack Table** (**peer:** `@tanstack/vue-table`).
+- [PfTimeline](https://github.com/koirodev/prismify-ui/tree/main/src/components/data/PfTimeline): Vertical timeline of events.
+- [PfMarquee](https://github.com/koirodev/prismify-ui/tree/main/src/components/data/PfMarquee): Horizontal infinite marquee for logos or text.
+- [PfTree](https://github.com/koirodev/prismify-ui/tree/main/src/components/data/PfTree): Hierarchical tree with expand/select.
+- [PfUser](https://github.com/koirodev/prismify-ui/tree/main/src/components/data/PfUser): User row with avatar, name, and meta.
+
+### Navigation
+
+- [PfBreadcrumb](https://github.com/koirodev/prismify-ui/tree/main/src/components/navigation/PfBreadcrumb): Hierarchy breadcrumb trail.
+- [PfLink](https://github.com/koirodev/prismify-ui/tree/main/src/components/navigation/PfLink): Router-aware link (**peer:** `vue-router`).
+- [PfNavigationMenu](https://github.com/koirodev/prismify-ui/tree/main/src/components/navigation/PfNavigationMenu): Horizontal or vertical nav menu.
+- [PfPagination](https://github.com/koirodev/prismify-ui/tree/main/src/components/navigation/PfPagination): Page controls for lists/tables.
+- [PfStepper](https://github.com/koirodev/prismify-ui/tree/main/src/components/navigation/PfStepper): Multi-step wizard indicator.
+- [PfTabs](https://github.com/koirodev/prismify-ui/tree/main/src/components/navigation/PfTabs): Tab list and panels.
+- [PfContentNavigation](https://github.com/koirodev/prismify-ui/tree/main/src/components/navigation/PfContentNavigation): Docs-style sidebar navigation.
+- [PfContentSurround](https://github.com/koirodev/prismify-ui/tree/main/src/components/navigation/PfContentSurround): Prev/next links for content pages.
+- [PfContentToc](https://github.com/koirodev/prismify-ui/tree/main/src/components/navigation/PfContentToc): Table of contents with active heading.
+- [PfFooterColumns](https://github.com/koirodev/prismify-ui/tree/main/src/components/navigation/PfFooterColumns): Multi-column link grid for footers.
+
+### Overlay
+
+- [PfTooltip](https://github.com/koirodev/prismify-ui/tree/main/src/components/overlay/PfTooltip): Hover/focus tooltip (integrates with **`PfApp`** provider).
+- [PfModal](https://github.com/koirodev/prismify-ui/tree/main/src/components/overlay/PfModal): Modal dialog with focus trap patterns.
+- [PfDrawer](https://github.com/koirodev/prismify-ui/tree/main/src/components/overlay/PfDrawer): Slide-in panel from screen edge.
+- [PfDropdownMenu](https://github.com/koirodev/prismify-ui/tree/main/src/components/overlay/PfDropdownMenu): Dropdown actions menu from a trigger.
+- [PfContextMenu](https://github.com/koirodev/prismify-ui/tree/main/src/components/overlay/PfContextMenu): Right-click context menu.
+- [PfContentSearch](https://github.com/koirodev/prismify-ui/tree/main/src/components/overlay/PfContentSearch): Command-palette-style documentation search overlay.
+- [PfToast](https://github.com/koirodev/prismify-ui/tree/main/src/components/overlay/PfToast): Single toast surface.
+- [PfToaster](https://github.com/koirodev/prismify-ui/tree/main/src/components/overlay/PfToaster): Toast host; use with **`usePfToast`**.
+
+### Editor (TipTap)
+
+- [PfEditor](https://github.com/koirodev/prismify-ui/tree/main/src/components/editor/PfEditor): Rich text editor (**peer:** `@tiptap/*` stack as in **`package.json`**).
+- [PfEditorToolbar](https://github.com/koirodev/prismify-ui/tree/main/src/components/editor/PfEditorToolbar): Configurable editor toolbar.
+- [PfEditorSuggestionMenu](https://github.com/koirodev/prismify-ui/tree/main/src/components/editor/PfEditorSuggestionMenu): Slash/command suggestion menu.
+- [PfEditorMentionMenu](https://github.com/koirodev/prismify-ui/tree/main/src/components/editor/PfEditorMentionMenu): `@` mention suggestions.
+- [PfEditorEmojiMenu](https://github.com/koirodev/prismify-ui/tree/main/src/components/editor/PfEditorEmojiMenu): Emoji picker for the editor.
+- [PfEditorDragHandle](https://github.com/koirodev/prismify-ui/tree/main/src/components/editor/PfEditorDragHandle): Block drag handle (**requires** `@tiptap/extension-node-range` among peers).
+
+### Dashboard
+
+- [PfDashboardGroup](https://github.com/koirodev/prismify-ui/tree/main/src/components/dashboard/PfDashboardGroup): Dashboard layout root with sidebar state.
+- [PfDashboardNavbar](https://github.com/koirodev/prismify-ui/tree/main/src/components/dashboard/PfDashboardNavbar): Top bar for dashboard shell.
+- [PfDashboardSidebar](https://github.com/koirodev/prismify-ui/tree/main/src/components/dashboard/PfDashboardSidebar): Collapsible/resizable sidebar.
+- [PfDashboardSidebarCollapse](https://github.com/koirodev/prismify-ui/tree/main/src/components/dashboard/PfDashboardSidebarCollapse): Collapse control for desktop sidebar.
+- [PfDashboardSidebarToggle](https://github.com/koirodev/prismify-ui/tree/main/src/components/dashboard/PfDashboardSidebarToggle): Mobile sidebar toggle.
+- [PfDashboardPanel](https://github.com/koirodev/prismify-ui/tree/main/src/components/dashboard/PfDashboardPanel): Main dashboard content panel.
+- [PfDashboardResizeHandle](https://github.com/koirodev/prismify-ui/tree/main/src/components/dashboard/PfDashboardResizeHandle): Drag handle for panel/sidebar width.
+- [PfDashboardToolbar](https://github.com/koirodev/prismify-ui/tree/main/src/components/dashboard/PfDashboardToolbar): Toolbar below navbar in dashboard layout.
+- [PfDashboardSearch](https://github.com/koirodev/prismify-ui/tree/main/src/components/dashboard/PfDashboardSearch): Dashboard-scoped command/search palette.
+- [PfDashboardSearchButton](https://github.com/koirodev/prismify-ui/tree/main/src/components/dashboard/PfDashboardSearchButton): Button to open **`PfDashboardSearch`**.
+
+---
+
+## Composables, helpers, and types (exported)
+
+| Export | Role | Source (raw) |
+| --- | --- | --- |
+| **`usePfApp`** | Read context from nearest **`PfApp`** (locale, dir, portals, toaster, tooltips). | [usePfApp.ts](https://raw.githubusercontent.com/koirodev/prismify-ui/main/src/composables/usePfApp.ts) |
+| **`usePfToast`** | Imperative toast queue for **`PfToaster`**. | [usePfToast.ts](https://raw.githubusercontent.com/koirodev/prismify-ui/main/src/composables/usePfToast.ts) |
+| **`usePfContentSearch`** | Shared state for **`PfContentSearch`**. | [usePfContentSearch.ts](https://raw.githubusercontent.com/koirodev/prismify-ui/main/src/composables/usePfContentSearch.ts) |
+| **`usePfKbd`**, **`getPfKbdKey`**, **`PF_KBD_GLYPHS`** | Keyboard glyphs for **`PfKbd`**. | [usePfKbd.ts](https://raw.githubusercontent.com/koirodev/prismify-ui/main/src/composables/usePfKbd.ts) |
+| **`mapEditorItems`**, **`mapEditorItem`** | Map toolbar/menu config for **`PfEditor`**. | [editor.ts](https://raw.githubusercontent.com/koirodev/prismify-ui/main/src/utils/editor.ts) |
+| **`PfEditorImageUpload`** | TipTap extension export for image upload flow. | [imageUploadExtension.ts](https://raw.githubusercontent.com/koirodev/prismify-ui/main/src/components/editor/PfEditor/imageUploadExtension.ts) |
+| **`PF_APP_INJECTION_KEY`**, **`resolvePfAppPortalTarget`** | Advanced **`PfApp`** integration. | [injection.ts](https://raw.githubusercontent.com/koirodev/prismify-ui/main/src/components/layout/PfApp/injection.ts) |
+| **`PF_ICON_NAMES`**, **`PF_ICON_SIZES`** | Icon name and size constants. | **`src/components/element/PfIcon/paths.ts`**, **`iconSizes.ts`** |
+
+Full export list and TypeScript types: **[src/index.ts](https://raw.githubusercontent.com/koirodev/prismify-ui/main/src/index.ts)**.
+
+---
+
+## Package entrypoints
+
+- **`prismify-ui`** — components, plugin (**`prismifyPlugin`**), composables, types.
+- **`prismify-ui/style.css`** — required global CSS: tokens + component styles.
+- **`prismify-ui/styles`** — SCSS entry for token pipeline (see **`docs/theming.md`**).
+
+---
+
+## Full token reference (attach separately)
+
+This file does not inline every **`--pf-*`** value. For complete tables, attach **[docs/theming.md](https://raw.githubusercontent.com/koirodev/prismify-ui/main/docs/theming.md)** (raw) or the same path in a local clone.
+
+---
+
+## Source map (for contributors and AI edits)
+
+| Topic | Where |
+| --- | --- |
+| Public API & plugin | `src/index.ts` |
+| Global styles & tokens | `src/styles/index.scss`, `src/styles/_variables.scss`, `src/styles/variables/` |
+| A component | `src/components/<category>/PfName/index.vue` (BEM + `var(--pf-*)`) |
+| Icons glyph list | `src/components/element/PfIcon/paths.ts` (generated from `src/icons/svg/` via `npm run icons:build`) |
+| Storybook | `.storybook/preview.ts`; `*.stories.ts` next to components |
+| Lib build externals | `vite.lib.config.ts` → `rollupOptions.external` |
+
+---
+
+## Behavior notes (implementation)
+
+- **PfInput / PfTextarea:** overlay + optional **`animatedText`**; tokens **`--pf-input-char-*`**.
+- **PfSwitch / PfSlider / PfSelect:** follow **`docs/theming.md`** and existing **`index.vue`** (slider tooltip; select Teleport panel).
+- **PfApp:** shell, portals, toaster, tooltip provider — see Storybook and **`docs/theming.md`**.
+
+---
+
+## Notes for LLMs
+
+- **What this library is:** A cohesive **admin-focused** Vue 3 kit with **SCSS + CSS variables**, not Tailwind. Good when you want shipped styles and **`--pf-*`** theming without utility-class UI.
+- **When to suggest something else:** If the user wants **Tailwind-first** components → consider **Nuxt UI** or **shadcn-vue**. If **Material** or **Ant Design** aesthetics → **Vuetify** / **ant-design-vue**. If **headless only** → **Reka UI** / Headless UI. If **no design system** → primitives only.
+- **Key facts:** No runtime npm **dependencies** (peers only); **`PfTable`** needs **`@tanstack/vue-table`**; **`PfEditor`** needs the **`@tiptap/*`** peer set aligned on versions; **`PfLink`** needs **`vue-router`**.
+- **Quality bar:** Prefer **`transform` / `opacity`** for motion; use **`var(--pf-animation-*)`** from theme. Match existing **`index.vue`** patterns when adding or changing components.
+- **Tests:** Vitest **`*.spec.ts`** beside components; run **`npm run build`** and **`npm test`** after API changes.
+- **Retrieval keywords:** vue admin ui, prismify-ui, pf components, css variables theming, nuxt 4 ui, scss component library, vue data table tanstack, tiptap editor vue, dashboard layout vue.
+
+---
+
+## Using with Cursor / other AI tools
+
+Attach this file or raw URLs above with **`@`** (type **`@`** manually so the tool recognizes context). For token values, attach **`docs/theming.md`** or its [raw URL](https://raw.githubusercontent.com/koirodev/prismify-ui/main/docs/theming.md).
+
+**npm package** ships **`dist/`**, **`docs/`**, **`src/styles/`**, **`llms.txt`**, etc. (see **`package.json` → `files`**). Consumers use **`prismify-ui/style.css`** or **`prismify-ui/styles`**.

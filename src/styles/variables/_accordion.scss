@@ -1,0 +1,15 @@
+// PfAccordion
+:root {
+  --pf-accordion-item-border: var(--pf-stroke-width) solid
+    var(--pf-border-color);
+  --pf-accordion-trigger-padding-y: 0.875rem;
+  --pf-accordion-trigger-gap: 0.375rem;
+  --pf-accordion-label-font-size: var(--pf-font-size-sm);
+  --pf-accordion-label-font-weight: var(--pf-font-weight-medium);
+  --pf-accordion-body-font-size: var(--pf-font-size-sm);
+  --pf-accordion-body-padding-bottom: 0.875rem;
+  --pf-accordion-panel-duration: 0.2s;
+  --pf-accordion-panel-easing: ease-out;
+  --pf-accordion-trailing-rotate-duration: 0.2s;
+  --pf-accordion-trailing-rotate-easing: ease-out;
+}

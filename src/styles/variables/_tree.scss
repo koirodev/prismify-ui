@@ -1,0 +1,29 @@
+// PfTree (default size md; overrides — `pfTree_size_*` modifiers in the component)
+:root {
+  --pf-tree-indent: 1.25rem;
+  --pf-tree-list-child-margin-start: 0.375rem;
+  --pf-tree-list-child-border: var(--pf-stroke-width) solid
+    var(--pf-border-color);
+  --pf-tree-row-gap: 0.375rem;
+  --pf-tree-row-pad-x: var(--pf-space-sm);
+  --pf-tree-chevron-rotate-duration: 0.2s;
+  --pf-tree-chevron-rotate-easing: ease-out;
+  /* Nested list expand (grid 0fr → 1fr) */
+  --pf-tree-expand-duration: var(--pf-animation-duration);
+  --pf-tree-expand-easing: var(--pf-animation-easing);
+  --pf-tree-transition-duration: 0.2s;
+  --pf-tree-transition-easing: ease-out;
+  --pf-tree-link-pad-x: 0.625rem;
+  --pf-tree-link-pad-y: 0.375rem;
+  --pf-tree-font-size: var(--pf-font-size-sm);
+  --pf-tree-line-height: var(--pf-line-height-md);
+  --pf-tree-icon-size: var(--pf-icon-size-sm);
+  --pf-tree-link-color: var(--pf-color-text);
+  --pf-tree-leading-color: var(--pf-color-muted);
+  --pf-tree-chevron-color: var(--pf-color-muted);
+  --pf-tree-row-hover-bg: color-mix(
+    in srgb,
+    var(--pf-color-muted) 8%,
+    transparent
+  );
+}

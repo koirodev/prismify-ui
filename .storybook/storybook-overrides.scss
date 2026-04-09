@@ -1,0 +1,25 @@
+/*
+ * Context menu teleports to the preview iframe `body`; the default
+ * `--pf-context-menu-z-index` (210) ends up below Storybook / canvas layers.
+ */
+:root,
+#storybook-root,
+body {
+  --pf-context-menu-z-index: 100000;
+  --pf-context-menu-backdrop-z-index: 99999;
+}
+
+/* Extra classes for stories (narrow panel, icon animation). */
+.pfStoryContextMenuNarrow {
+  min-width: 12rem;
+}
+
+@keyframes pfStoryContextMenuSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pfStoryContextMenuSpin {
+  animation: pfStoryContextMenuSpin 0.85s linear infinite;
+}

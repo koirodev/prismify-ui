@@ -1,0 +1,46 @@
+// PfNavigationMenu
+:root {
+  --pf-navigation-menu-gap: 0.625rem;
+  --pf-navigation-menu-group-gap: 1.25rem;
+  --pf-navigation-menu-bar-padding-y: 0.5rem;
+  --pf-navigation-menu-link-padding-x: 0.875rem;
+  --pf-navigation-menu-link-padding-y: 0.5rem;
+  --pf-navigation-menu-link-radius: var(--pf-radius-md);
+  /** Background for top-level and child items on hover */
+  --pf-navigation-menu-item-hover-bg: color-mix(
+    in srgb,
+    var(--pf-color-muted) 12%,
+    var(--pf-color-surface)
+  );
+  --pf-navigation-menu-dropdown-z-index: 30;
+  --pf-navigation-menu-dropdown-min-width: 14rem;
+  --pf-navigation-menu-dropdown-max-height: min(70vh, 28rem);
+  --pf-navigation-menu-dropdown-padding: 1rem;
+  --pf-navigation-menu-dropdown-shadow: var(
+    --pf-shadow-lg,
+    0 10px 40px rgb(15 23 42 / 12%)
+  );
+  --pf-navigation-menu-dropdown-border: 1px solid var(--pf-border-color);
+  --pf-navigation-menu-child-gap: 0.75rem;
+  --pf-navigation-menu-child-link-padding-x: 0.75rem;
+  --pf-navigation-menu-child-link-padding-y: 0.625rem;
+  --pf-navigation-menu-child-link-gap: 0.625rem;
+  --pf-navigation-menu-viewport-margin-top: 0.375rem;
+  --pf-navigation-menu-viewport-duration: var(--pf-animation-duration);
+  --pf-navigation-menu-viewport-easing: var(--pf-animation-easing);
+  /** Horizontal submenu plank show / hide (scale + transform + opacity) */
+  --pf-navigation-menu-dropdown-plank-duration: var(
+    --pf-navigation-menu-viewport-duration
+  );
+  --pf-navigation-menu-dropdown-plank-scale: 0.96;
+  --pf-navigation-menu-dropdown-plank-translate-y: calc(
+    -1 * var(--pf-space-xs, 0.25rem)
+  );
+  /** Submenu content change (opacity + shift) and panel height (horizontal menu) */
+  --pf-navigation-menu-slide-duration: 0.32s;
+  --pf-navigation-menu-collapsed-width: 3rem;
+  --pf-navigation-menu-indicator-size: 2px;
+  --pf-navigation-menu-arrow-size: 0.5rem;
+  --pf-navigation-menu-vertical-group-gap: 0.5rem;
+  --pf-navigation-menu-section-label-padding-y: 0.5rem;
+}

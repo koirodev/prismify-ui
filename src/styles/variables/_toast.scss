@@ -1,0 +1,14 @@
+:root {
+  --pf-toast-z-index: 10010;
+  --pf-toast-width: 22rem;
+  --pf-toast-radius: var(--pf-radius-md);
+  --pf-toast-enter-shift: 8px;
+  --pf-toast-pulse-duration: 220ms;
+
+  --pf-toast-surface: var(--pf-color-surface, #ffffff);
+  --pf-toast-border: var(--pf-border-color, #e2e8f0);
+  --pf-toast-fg: var(--pf-color-text, #0f172a);
+  --pf-toast-muted: var(--pf-color-muted, #64748b);
+  --pf-toast-shadow: 0 var(--pf-space-xs) var(--pf-space-lg)
+    color-mix(in srgb, var(--pf-color-text, #0f172a) 12%, transparent);
+}

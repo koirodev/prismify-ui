@@ -1,0 +1,102 @@
+# Publishes to npm when `package.json` version changes on `main`, then creates git tag `v<version>`
+# on GitHub (annotated message = section `## [version]` from CHANGELOG.md, or `Release v<version>` if missing).
+# Requires repository secret: NPM_TOKEN (npm "Automation" or "Publish" token).
+
+name: Publish to npm
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: publish-npm-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+
+      - name: Detect version bump in package.json
+        id: version
+        shell: bash
+        run: |
+          if ! git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
+            echo "First commit on branch — will try to publish." >&2
+            echo "bump=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if git diff HEAD~1 HEAD -- package.json | grep -qE '^\+.*"version"'; then
+            echo "bump=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "bump=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Restores ~/.npm from Actions cache (keyed by package-lock.json hash) so `npm ci` is faster.
+      - name: Setup Node.js
+        if: steps.version.outputs.bump == 'true'
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        if: steps.version.outputs.bump == 'true'
+        run: npm ci
+
+      - name: Lint
+        if: steps.version.outputs.bump == 'true'
+        run: npm run lint
+
+      - name: Publish to npm
+        if: steps.version.outputs.bump == 'true'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ver=$(node -p "require('./package.json').version")
+          if [[ "$ver" =~ (alpha|beta|rc) ]]; then
+            npm publish --tag alpha --access public
+          else
+            npm publish --access public
+          fi
+
+      - name: Create and push git tag
+        if: steps.version.outputs.bump == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          ver=$(node -p "require('./package.json').version")
+          tag="v${ver}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin --tags 2>/dev/null || true
+          if git rev-parse "$tag" >/dev/null 2>&1; then
+            echo "Tag $tag already exists locally, skipping."
+            exit 0
+          fi
+          if [ -n "$(git ls-remote origin "refs/tags/${tag}" 2>/dev/null || true)" ]; then
+            echo "Tag $tag already exists on remote, skipping."
+            exit 0
+          fi
+          body=$(node scripts/changelog-body-for-version.mjs)
+          if [ -z "$body" ]; then
+            body="Release ${tag}"
+          else
+            body="${tag}
+
+${body}"
+          fi
+          printf '%s\n' "$body" > /tmp/pf-tag-message.txt
+          git tag -a "$tag" -F /tmp/pf-tag-message.txt
+          git push origin "$tag"

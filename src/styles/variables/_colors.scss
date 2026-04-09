@@ -1,0 +1,37 @@
+// Color tokens — override in your app: :root, .dark, or a scoped wrapper.
+:root {
+  --pf-color-surface: #ffffff;
+  --pf-color-text: #0f172a;
+  --pf-color-muted: #64748b;
+
+  --pf-color-primary: #1493b8;
+  --pf-color-primary-hover: #0f7fa1;
+
+  --pf-color-secondary: #6366f1;
+  --pf-color-secondary-hover: #4f46e5;
+
+  --pf-color-success: #16a34a;
+  --pf-color-success-hover: #15803d;
+
+  --pf-color-info: #2563eb;
+  --pf-color-info-hover: #1d4ed8;
+
+  --pf-color-warning: #d97706;
+  --pf-color-warning-hover: #b45309;
+
+  --pf-color-error: #dc2626;
+  --pf-color-error-hover: #b91c1c;
+
+  --pf-color-neutral: #64748b;
+  --pf-color-neutral-hover: #475569;
+
+  --pf-border-color: #e2e8f0;
+  --pf-border-color-hover: #cbd5e1;
+
+  /* PfSkeleton: placeholder fill (slightly above surface, below border) */
+  --pf-skeleton-bg: color-mix(
+    in srgb,
+    var(--pf-color-muted) 14%,
+    var(--pf-color-surface)
+  );
+}

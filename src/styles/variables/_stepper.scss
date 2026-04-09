@@ -1,0 +1,15 @@
+// PfStepper: gaps, separator line, pending background
+:root {
+  --pf-stepper-root-gap: var(--pf-space-md);
+  --pf-stepper-header-gap: var(--pf-space-xs);
+  --pf-stepper-item-gap: var(--pf-space-sm);
+  --pf-stepper-separator-thickness: 2px;
+  /** Small gap of the line from the circle edge (horizontal and vertical). */
+  --pf-stepper-line-gap: 0.25rem;
+  --pf-stepper-separator-pending-bg: color-mix(
+    in srgb,
+    var(--pf-color-muted) 35%,
+    var(--pf-color-surface)
+  );
+  --pf-stepper-content-padding-top: var(--pf-space-md);
+}

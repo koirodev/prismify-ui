@@ -1,0 +1,25 @@
+// Animation variables
+:root {
+  --pf-animation-duration: 0.45s;
+  --pf-animation-easing: cubic-bezier(0.36, 0.3, 0, 1);
+
+  /* PfProgress: indeterminate state */
+  --pf-progress-indeterminate-duration: 2s;
+  --pf-progress-indeterminate-easing: ease-in-out;
+
+  /* PfSkeleton: pulse cycle (Tailwind animate-pulse–like) */
+  --pf-skeleton-pulse-duration: 2s;
+  --pf-skeleton-pulse-mid-opacity: 0.55;
+
+  /* PfInput: character appear and “drop” with `animated-text` */
+  --pf-input-char-appear-duration: 0.2s;
+  --pf-input-char-appear-easing: ease-out;
+  --pf-input-char-fall-duration: 0.18s;
+  --pf-input-char-fall-easing: ease-in;
+
+  /* PfSwitch: thumb movement and “squish” on toggle */
+  --pf-switch-move-duration: 0.4s;
+  --pf-switch-move-easing: cubic-bezier(0.45, 0, 0.2, 1);
+  --pf-switch-squish-duration: 0.45s;
+  --pf-switch-squish-easing: cubic-bezier(0.45, 0, 0.25, 1.25);
+}

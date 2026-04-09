@@ -1,0 +1,26 @@
+:root {
+  /* PfModal: stacking order above content */
+  --pf-modal-z-index: 9000;
+  --pf-modal-overlay-z-index: 9000;
+  --pf-modal-content-z-index: 9001;
+
+  /* PfModal: geometry and decorative panel props */
+  --pf-modal-max-width: 32rem;
+  --pf-modal-max-height: calc(100dvh - 2rem);
+  --pf-modal-radius: var(--pf-radius-md);
+  --pf-modal-shadow: 0 var(--pf-space-xs) var(--pf-space-xl)
+    color-mix(in srgb, var(--pf-color-text) 14%, transparent);
+  --pf-modal-enter-shift: calc(-1 * var(--pf-space-sm));
+
+  /* PfModal: backdrop and padding */
+  --pf-modal-overlay-bg: color-mix(
+    in srgb,
+    var(--pf-color-text) 45%,
+    transparent
+  );
+  --pf-modal-viewport-padding: var(--pf-space-lg);
+  --pf-modal-padding-x: var(--pf-space-lg);
+  --pf-modal-padding-y: var(--pf-space-lg);
+  --pf-modal-header-padding-y: var(--pf-space-md);
+  --pf-modal-footer-padding-y: var(--pf-space-md);
+}

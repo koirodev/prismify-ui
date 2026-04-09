@@ -1,0 +1,31 @@
+:root {
+  /* PfContextMenu: layer and backdrop (modal); above PfSelect dropdowns */
+  --pf-context-menu-z-index: 10000;
+  --pf-context-menu-backdrop-z-index: 9999;
+
+  /* Panel: same role as PfSelect custom panel */
+  --pf-context-menu-min-width: 10rem;
+  --pf-context-menu-max-height: min(18rem, 70vh);
+  --pf-context-menu-padding: var(--pf-space-xs);
+  --pf-context-menu-gap: var(--pf-space-sm);
+  --pf-context-menu-submenu-gap: 4px;
+  --pf-context-menu-font-size: var(--pf-font-size-sm);
+  --pf-context-menu-line-height: var(--pf-line-height-md);
+  --pf-context-menu-group-label-font-size: var(--pf-font-size-xs);
+  --pf-context-menu-group-label-font-weight: var(--pf-font-weight-bold);
+  --pf-context-menu-item-description-font-size: var(--pf-font-size-xs);
+  --pf-context-menu-empty-font-size: var(--pf-font-size-sm);
+
+  --pf-context-menu-surface: var(--pf-color-surface, #ffffff);
+  --pf-context-menu-border: var(--pf-border-color, #e2e8f0);
+  --pf-context-menu-text: var(--pf-color-text, #0f172a);
+  --pf-context-menu-muted: var(--pf-color-muted, #64748b);
+  --pf-context-menu-item-hover: color-mix(
+    in srgb,
+    var(--pf-context-menu-muted, #71717a) 14%,
+    transparent
+  );
+  --pf-context-menu-radius: var(--pf-radius-sm, 0.375rem);
+  --pf-context-menu-shadow: 0 var(--pf-space-xs) var(--pf-space-lg)
+    color-mix(in srgb, var(--pf-context-menu-text, #18181b) 12%, transparent);
+}

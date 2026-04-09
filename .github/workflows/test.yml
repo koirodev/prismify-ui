@@ -1,0 +1,33 @@
+# Lint + Vitest. Paired with build.yml; both use npm cache.
+
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      - run: npm test

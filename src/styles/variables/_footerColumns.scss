@@ -1,0 +1,17 @@
+// PfFooterColumns
+:root {
+  --pf-footer-columns-gap: var(--pf-space-xl);
+  --pf-footer-columns-gap-lg: 2rem;
+  --pf-footer-columns-stack-gap: 2.5rem;
+  --pf-footer-columns-stack-gap-lg: 0;
+  --pf-footer-columns-right-margin-top: 2.5rem;
+  --pf-footer-columns-right-margin-top-lg: 0;
+  --pf-footer-columns-inner-gap: var(--pf-space-lg);
+  --pf-footer-columns-label-font-size: var(--pf-font-size-sm);
+  --pf-footer-columns-label-font-weight: var(--pf-font-weight-bold);
+  --pf-footer-columns-label-color: var(--pf-color-text);
+  --pf-footer-columns-list-gap: var(--pf-space-md);
+  --pf-footer-columns-link-gap: 0.375rem;
+  --pf-footer-columns-link-font-size: var(--pf-font-size-sm);
+  --pf-footer-columns-external-icon-size: var(--pf-icon-size-2xs);
+}

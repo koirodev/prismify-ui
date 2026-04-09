@@ -1,0 +1,72 @@
+// Shared tag pill styles (PfInputTags, PfInputMenu multiple).
+@mixin pf-input-tag-pill {
+  padding-block: 1px;
+  padding-inline: var(--pf-space-sm) calc(var(--pf-space-sm) / 1.5);
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pf-space-xs);
+  box-sizing: border-box;
+
+  color: var(--pf-input-text, var(--pf-color-text));
+  font-size: var(--pf-input-font-size, inherit);
+  line-height: var(--pf-input-line-height, inherit);
+
+  box-shadow: inset 0 0 0 var(--pf-stroke-width) var(--pf-border-color);
+  background: var(--pf-color-surface-elevated, var(--pf-color-surface));
+  border-radius: var(--pf-radius-sm, var(--pf-input-radius));
+}
+
+@mixin pf-input-tag-text {
+  min-width: 0;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  overflow: hidden;
+}
+
+@mixin pf-input-tag-remove {
+  margin: 0;
+
+  padding: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  color: var(--pf-input-muted, var(--pf-color-muted));
+  line-height: 0;
+
+  background: none;
+  border: none;
+  border-radius: var(--pf-radius-xs);
+
+  transition:
+    color var(--pf-animation-duration) var(--pf-animation-easing),
+    background-color var(--pf-animation-duration) var(--pf-animation-easing);
+
+  cursor: pointer;
+
+  &:not(:disabled):hover {
+    color: var(--pf-input-text, var(--pf-color-text));
+
+    background: var(--pf-color-surface-muted, transparent);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+  }
+}
+
+@mixin pf-input-tags-cluster {
+  margin-inline-end: var(--pf-space-xs);
+
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--pf-space-xs);
+}

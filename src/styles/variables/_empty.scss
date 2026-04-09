@@ -1,0 +1,12 @@
+// PfEmpty: gaps and icon bubble background (root styles live in the component)
+:root {
+  --pf-empty-gap: var(--pf-space-lg);
+  --pf-empty-header-gap: var(--pf-space-sm);
+  --pf-empty-actions-gap: var(--pf-space-sm);
+  --pf-empty-max-text-width: 24rem;
+  --pf-empty-icon-bubble-bg: color-mix(
+    in srgb,
+    var(--pf-color-muted) 22%,
+    transparent
+  );
+}

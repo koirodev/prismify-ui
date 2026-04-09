@@ -1,0 +1,294 @@
+// Spacing and shape (radius)
+:root {
+  --pf-radius-xs: 6px;
+  --pf-radius-sm: 10px;
+  --pf-radius-md: 14px;
+  --pf-radius-lg: 18px;
+  /* Pill / full rounding (handles, chips) */
+  --pf-radius-full: 9999px;
+
+  --pf-space-xs: 0.25rem;
+  --pf-space-sm: 0.5rem;
+  --pf-space-md: 0.75rem;
+  --pf-space-lg: 1rem;
+  --pf-space-xl: 1.25rem;
+
+  /* Fixed header height (`PfMain`, `PfError` — `min-height: calc(100vh - var(--pf-header-height))`; `PfHeader` — `height`). Set a non-zero value to match the real header (e.g. `3.5rem`), or `PfMain` will not align with `PfHeader` visually when default `--pf-header-height: 0px`. */
+  --pf-header-height: 0px;
+
+  /* PfHeader: sticky header and mobile menu layer */
+  --pf-header-z-index: 50;
+  --pf-header-overlay-z-index: 100;
+  --pf-header-panel-z-index: 101;
+
+  /* PfContainer: max content width and horizontal padding (typical sm/lg breakpoints) */
+  --pf-container-max-width: 80rem;
+  --pf-container-padding-x: 1rem;
+  --pf-container-padding-x-sm: 1.5rem;
+  --pf-container-padding-x-lg: 2rem;
+
+  /* PfFooter: `top` / `bottom` sections, main row (`container`), column gaps when stacked */
+  --pf-footer-section-padding-y: 2rem;
+  --pf-footer-section-padding-y-lg: 3rem;
+  --pf-footer-container-padding-y: 2rem;
+  --pf-footer-container-padding-y-lg: 1rem;
+  --pf-footer-stack-gap: 0.75rem;
+  --pf-footer-inline-gap: 0.375rem;
+
+  --pf-icon-size-3xs: 0.625rem;
+  --pf-icon-size-2xs: 0.75rem;
+  --pf-icon-size-xs: 0.875rem;
+  --pf-icon-size-sm: 1rem;
+  --pf-icon-size-md: 1.125rem;
+  --pf-icon-size-lg: 1.25rem;
+  --pf-icon-size-xl: 1.5rem;
+  --pf-icon-size-2xl: 1.75rem;
+  --pf-icon-size-3xl: 2rem;
+
+  /* PfAvatar: root width/height (circle) */
+  --pf-avatar-size-3xs: 1rem;
+  --pf-avatar-size-2xs: 1.25rem;
+  --pf-avatar-size-xs: 1.5rem;
+  --pf-avatar-size-sm: 1.75rem;
+  --pf-avatar-size-md: 2rem;
+  --pf-avatar-size-lg: 2.25rem;
+  --pf-avatar-size-xl: 2.5rem;
+  --pf-avatar-size-2xl: 2.75rem;
+  --pf-avatar-size-3xl: 3rem;
+
+  /* PfAvatar: fallback text size (initials / short text) */
+  --pf-avatar-text-3xs: 0.5rem;
+  --pf-avatar-text-2xs: 0.625rem;
+  --pf-avatar-text-xs: 0.75rem;
+  --pf-avatar-text-sm: 0.875rem;
+  --pf-avatar-text-md: 1rem;
+  --pf-avatar-text-lg: 1.125rem;
+  --pf-avatar-text-xl: 1.25rem;
+  --pf-avatar-text-2xl: 1.375rem;
+  --pf-avatar-text-3xl: 1.5rem;
+
+  /* PfChip: dot height/min width, digit/text size, horizontal padding with text */
+  --pf-chip-size-3xs: 4px;
+  --pf-chip-size-2xs: 5px;
+  --pf-chip-size-xs: 6px;
+  --pf-chip-size-sm: 7px;
+  --pf-chip-size-md: 8px;
+  --pf-chip-size-lg: 9px;
+  --pf-chip-size-xl: 10px;
+  --pf-chip-size-2xl: 11px;
+  --pf-chip-size-3xl: 12px;
+
+  --pf-chip-font-3xs: 4px;
+  --pf-chip-font-2xs: 5px;
+  --pf-chip-font-xs: 6px;
+  --pf-chip-font-sm: 7px;
+  --pf-chip-font-md: 8px;
+  --pf-chip-font-lg: 9px;
+  --pf-chip-font-xl: 10px;
+  --pf-chip-font-2xl: 11px;
+  --pf-chip-font-3xl: 12px;
+
+  --pf-chip-pad-x-3xs: 1px;
+  --pf-chip-pad-x-2xs: 1px;
+  --pf-chip-pad-x-xs: 2px;
+  --pf-chip-pad-x-sm: 2px;
+  --pf-chip-pad-x-md: 2px;
+  --pf-chip-pad-x-lg: 2px;
+  --pf-chip-pad-x-xl: 3px;
+  --pf-chip-pad-x-2xl: 3px;
+  --pf-chip-pad-x-3xl: 3px;
+
+  --pf-chip-inset-offset: 2px;
+
+  /* PfCheckbox: indicator square size */
+  --pf-checkbox-size-xs: 0.875rem;
+  --pf-checkbox-size-sm: 1rem;
+  --pf-checkbox-size-md: 1.25rem;
+  --pf-checkbox-size-lg: 1.375rem;
+  --pf-checkbox-size-xl: 1.5rem;
+
+  /* PfCheckbox: row height with indicator (alignment with text) */
+  --pf-checkbox-container-height-xs: 1rem;
+  --pf-checkbox-container-height-sm: 1rem;
+  --pf-checkbox-container-height-md: 1.5rem;
+  --pf-checkbox-container-height-lg: 1.5rem;
+  --pf-checkbox-container-height-xl: 1.75rem;
+
+  /* PfCheckbox: inner padding when variant="card" */
+  --pf-checkbox-card-pad-xs: 0.625rem;
+  --pf-checkbox-card-pad-sm: 0.75rem;
+  --pf-checkbox-card-pad-md: 0.875rem;
+  --pf-checkbox-card-pad-lg: 1rem;
+  --pf-checkbox-card-pad-xl: 1.125rem;
+
+  /* PfSwitch: inset = vertical gap in padding-box: (inner height − thumb)/2, inner height = height − border; travel = width − height (= inner width − inner height) */
+  --pf-switch-track-border-x: 4px;
+
+  --pf-switch-track-width-xs: 1.75rem;
+  --pf-switch-track-height-xs: 1rem;
+  --pf-switch-thumb-size-xs: 0.75rem;
+  --pf-switch-inset-xs: max(
+    0px,
+    calc(
+      (
+          var(--pf-switch-track-height-xs) - var(
+              --pf-switch-track-border-x
+            ) - var(--pf-switch-thumb-size-xs)
+        ) /
+        2
+    )
+  );
+  --pf-switch-travel-xs: calc(
+    var(--pf-switch-track-width-xs) - var(--pf-switch-track-height-xs)
+  );
+
+  --pf-switch-track-width-sm: 2rem;
+  --pf-switch-track-height-sm: 1.125rem;
+  --pf-switch-thumb-size-sm: 0.875rem;
+  --pf-switch-inset-sm: max(
+    0px,
+    calc(
+      (
+          var(--pf-switch-track-height-sm) - var(
+              --pf-switch-track-border-x
+            ) - var(--pf-switch-thumb-size-sm)
+        ) /
+        2
+    )
+  );
+  --pf-switch-travel-sm: calc(
+    var(--pf-switch-track-width-sm) - var(--pf-switch-track-height-sm)
+  );
+
+  --pf-switch-track-width-md: 2.25rem;
+  --pf-switch-track-height-md: 1.25rem;
+  --pf-switch-thumb-size-md: 1rem;
+  --pf-switch-inset-md: max(
+    0px,
+    calc(
+      (
+          var(--pf-switch-track-height-md) - var(
+              --pf-switch-track-border-x
+            ) - var(--pf-switch-thumb-size-md)
+        ) /
+        2
+    )
+  );
+  --pf-switch-travel-md: calc(
+    var(--pf-switch-track-width-md) - var(--pf-switch-track-height-md)
+  );
+
+  --pf-switch-track-width-lg: 2.5rem;
+  --pf-switch-track-height-lg: 1.375rem;
+  --pf-switch-thumb-size-lg: 1.125rem;
+  --pf-switch-inset-lg: max(
+    0px,
+    calc(
+      (
+          var(--pf-switch-track-height-lg) - var(
+              --pf-switch-track-border-x
+            ) - var(--pf-switch-thumb-size-lg)
+        ) /
+        2
+    )
+  );
+  --pf-switch-travel-lg: calc(
+    var(--pf-switch-track-width-lg) - var(--pf-switch-track-height-lg)
+  );
+
+  --pf-switch-track-width-xl: 2.75rem;
+  --pf-switch-track-height-xl: 1.5rem;
+  --pf-switch-thumb-size-xl: 1.25rem;
+  --pf-switch-inset-xl: max(
+    0px,
+    calc(
+      (
+          var(--pf-switch-track-height-xl) - var(
+              --pf-switch-track-border-x
+            ) - var(--pf-switch-thumb-size-xl)
+        ) /
+        2
+    )
+  );
+  --pf-switch-travel-xl: calc(
+    var(--pf-switch-track-width-xl) - var(--pf-switch-track-height-xl)
+  );
+
+  /* PfKbd: height, min width, font size per size */
+  --pf-kbd-height-sm: 1rem;
+  --pf-kbd-height-md: 1.25rem;
+  --pf-kbd-height-lg: 1.5rem;
+  --pf-kbd-min-width-sm: 1rem;
+  --pf-kbd-min-width-md: 1.25rem;
+  --pf-kbd-min-width-lg: 1.5rem;
+  --pf-kbd-font-size-sm: 0.625rem;
+  --pf-kbd-font-size-md: 0.6875rem;
+  --pf-kbd-font-size-lg: 0.75rem;
+  --pf-kbd-pad-x: 0.25rem;
+
+  /* PfSeparator: line thickness (`size` prop) */
+  --pf-separator-thickness-xs: 1px;
+  --pf-separator-thickness-sm: 2px;
+  --pf-separator-thickness-md: 3px;
+  --pf-separator-thickness-lg: 4px;
+  --pf-separator-thickness-xl: 5px;
+
+  /* PfProgress: track thickness (horizontal — height, vertical — width) */
+  --pf-progress-thickness-2xs: 1px;
+  --pf-progress-thickness-xs: 2px;
+  --pf-progress-thickness-sm: 0.25rem;
+  --pf-progress-thickness-md: 0.5rem;
+  --pf-progress-thickness-lg: 0.75rem;
+  --pf-progress-thickness-xl: 1rem;
+  --pf-progress-thickness-2xl: 1.25rem;
+
+  /* PfProgress: track background */
+  --pf-progress-track-bg: color-mix(
+    in srgb,
+    var(--pf-border-color) 85%,
+    var(--pf-color-surface)
+  );
+
+  /* PfProgress: vertical when parent has no height */
+  --pf-progress-vertical-min-height: 8rem;
+
+  /* PfSlider: track thickness (Nuxt UI theme style: 6–10px by size) */
+  --pf-slider-track-thickness-xs: 6px;
+  --pf-slider-track-thickness-sm: 7px;
+  --pf-slider-track-thickness-md: 8px;
+  --pf-slider-track-thickness-lg: 9px;
+  --pf-slider-track-thickness-xl: 10px;
+  --pf-slider-track-thickness: var(--pf-slider-track-thickness-md);
+
+  /* PfSlider: thumb diameter (ring + empty center for `--pf-color-surface`) */
+  --pf-slider-thumb-size-xs: 0.75rem;
+  --pf-slider-thumb-size-sm: 0.875rem;
+  --pf-slider-thumb-size-md: 1rem;
+  --pf-slider-thumb-size-lg: 1.125rem;
+  --pf-slider-thumb-size-xl: 1.25rem;
+
+  /* PfSlider: track background (inactive segment) */
+  --pf-slider-track-bg: var(--pf-progress-track-bg);
+
+  /* PfSlider: vertical when parent has no height */
+  --pf-slider-vertical-min-height: 12rem;
+
+  /* PfSelect: dropdown panel z-index (custom mode, Teleport) */
+  --pf-select-panel-z-index: 200;
+
+  /* PfColorPicker: selector square and vertical hue track height (Nuxt UI theme style) */
+  --pf-color-picker-size-xs: 9.5rem;
+  --pf-color-picker-size-sm: 10rem;
+  --pf-color-picker-size-md: 10.5rem;
+  --pf-color-picker-size-lg: 11rem;
+  --pf-color-picker-size-xl: 11.5rem;
+
+  --pf-color-picker-track-width-xs: 6px;
+  --pf-color-picker-track-width-sm: 7px;
+  --pf-color-picker-track-width-md: 8px;
+  --pf-color-picker-track-width-lg: 9px;
+  --pf-color-picker-track-width-xl: 10px;
+
+  --pf-color-picker-thumb-size: 1rem;
+  --pf-color-picker-gap: var(--pf-space-md);
+}

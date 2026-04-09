@@ -1,0 +1,6 @@
+// PfMarquee: cycle duration, gap between content copies, edge gradient layer
+:root {
+  --pf-marquee-duration: 20s;
+  --pf-marquee-gap: 4rem;
+  --pf-marquee-overlay-z-index: 2;
+}

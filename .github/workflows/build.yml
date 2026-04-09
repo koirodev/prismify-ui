@@ -1,0 +1,31 @@
+# Library build (Vite). Paired with test.yml; both use npm cache.
+
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - run: npm ci
+
+      - run: npm run build
