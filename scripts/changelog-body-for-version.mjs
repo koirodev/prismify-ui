@@ -13,7 +13,7 @@ const escaped = ver.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 // `(?![\s\S])` for end-of-string only.
 const re = new RegExp(
   `^## \\[${escaped}\\][^\\n]*\\n([\\s\\S]*?)(?=\\n## \\[|(?![\\s\\S]))`,
-  'm',
+  'm'
 );
 const m = text.match(re);
 process.stdout.write(m ? m[1].trim() : '');

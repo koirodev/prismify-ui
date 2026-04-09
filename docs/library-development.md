@@ -33,7 +33,7 @@ Sources are individual files in **`src/icons/svg/`** (file **`chevron-down.svg`*
 
 ## Versioning (semver + alpha)
 
-- Format: **`MAJOR.MINOR.PATCH`** and prereleases **`0.1.0-alpha.0`**, **`0.1.0-alpha.1`**, …
+- Format: **`MAJOR.MINOR.PATCH`** and prereleases **`0.1.0-alpha.1`**, **`0.1.0-alpha.2`**, …
 - Bump prerelease without git tag: **`npm run version:alpha`** (runs **`npm version prerelease --preid=alpha --no-git-tag-version`**)
 - Publish with **`alpha`** tag: **`npm run release:alpha`** (after **`npm login`**)
 
