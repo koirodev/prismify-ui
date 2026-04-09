@@ -76,25 +76,25 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ver=$$(node -p "require('./package.json').version")
-          tag="v$${ver}"
+          ver=$(node -p "require('./package.json').version")
+          tag="v${ver}"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin --tags 2>/dev/null || true
-          if git rev-parse "$$tag" >/dev/null 2>&1; then
-            echo "Tag $$tag already exists locally, skipping."
+          if git rev-parse "$tag" >/dev/null 2>&1; then
+            echo "Tag $tag already exists locally, skipping."
             exit 0
           fi
-          if [ -n "$$(git ls-remote origin "refs/tags/$${tag}" 2>/dev/null || true)" ]; then
-            echo "Tag $$tag already exists on remote, skipping."
+          if [ -n "$(git ls-remote origin "refs/tags/${tag}" 2>/dev/null || true)" ]; then
+            echo "Tag $tag already exists on remote, skipping."
             exit 0
           fi
-          body=$$(node scripts/changelog-body-for-version.mjs)
-          if [ -z "$$body" ]; then
-            body="Release $${tag}"
+          body=$(node scripts/changelog-body-for-version.mjs)
+          if [ -z "$body" ]; then
+            body="Release ${tag}"
           else
-            body=$$(printf '%s\n\n%s' "$${tag}" "$$body")
+            body=$(printf '%s\n\n%s' "${tag}" "$body")
           fi
-          printf '%s\n' "$$body" > /tmp/pf-tag-message.txt
-          git tag -a "$$tag" -F /tmp/pf-tag-message.txt
-          git push origin "$$tag"
+          printf '%s\n' "$body" > /tmp/pf-tag-message.txt
+          git tag -a "$tag" -F /tmp/pf-tag-message.txt
+          git push origin "$tag"
