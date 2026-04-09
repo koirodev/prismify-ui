@@ -11,7 +11,7 @@ The package has **no runtime `dependencies`**; everything below is **`peerDepend
 | Peer | Used for |
 | --- | --- |
 | `vue` ^3.4 | All components |
-| `vue-router` ^4 | **`PfLink`** (and router-aware navigation) |
+| `vue-router` ^5 | **`PfLink`** (and router-aware navigation) |
 | `@internationalized/date` ^3.12 | **`PfCalendar`** |
 | `@internationalized/number` ^3.6 | **`PfInputNumber`** ([Internationalized Number](https://react-spectrum.adobe.com/internationalized/number/) — locale parsing/formatting) |
 | `@tanstack/vue-table` ^8.21 | **`PfTable`** |

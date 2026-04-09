@@ -1,4 +1,4 @@
-# prismify-ui v0.1.0-alpha.4
+# prismify-ui v0.1.0-alpha.5
 
 [![Tests](https://github.com/koirodev/prismify-ui/actions/workflows/test.yml/badge.svg)](https://github.com/koirodev/prismify-ui/actions/workflows/test.yml) [![Build](https://github.com/koirodev/prismify-ui/actions/workflows/build.yml/badge.svg)](https://github.com/koirodev/prismify-ui/actions/workflows/build.yml)
 

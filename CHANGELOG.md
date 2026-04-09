@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.0-alpha.5] - 2026-04-09
+
+### Changed
+
+- **Peer dependency** **`vue-router`** raised from **^4** to **^5** (install **Vue Router 5** if you use **`PfLink`** or other router-aware components). The APIs used in the library (**`RouterLink`**, **`useRouter`**, **`useRoute`**, route location types) stay compatible with Vue Router 5; no source changes were required in **prismify-ui**.
+- **Dev dependency** **`vue-router`** updated to **^5.0.4** for tests, Storybook, and the playground.
+- **`docs/installation.md`**: peer table documents **`vue-router` ^5**.
+
 ## [0.1.0-alpha.4] - 2026-04-09
 
 ### Added
