@@ -95,14 +95,14 @@ provide(DRAWER_DEPTH_KEY, depth + 1);
 
 let bodyScrollLockCount = 0;
 function lockBodyScroll() {
-  if (props.noBodyStyles) return;
+  if (props.noBodyStyles || typeof document === 'undefined') return;
   bodyScrollLockCount++;
   if (bodyScrollLockCount === 1) {
     document.documentElement.style.overflow = 'hidden';
   }
 }
 function unlockBodyScroll() {
-  if (props.noBodyStyles) return;
+  if (props.noBodyStyles || typeof document === 'undefined') return;
   bodyScrollLockCount = Math.max(0, bodyScrollLockCount - 1);
   if (bodyScrollLockCount === 0) {
     document.documentElement.style.overflow = '';
@@ -319,6 +319,7 @@ const panelMaxSize = computed(() => {
 const stackZIndex = computed(() => 9010 + depth * 10);
 
 function findScaleWrapper(): HTMLElement | null {
+  if (typeof document === 'undefined') return null;
   return document.querySelector(
     '[data-pf-drawer-scale-wrapper]'
   ) as HTMLElement | null;
@@ -382,11 +383,13 @@ function onOverlayPointerDown() {
 }
 
 function bindGlobalListeners() {
+  if (typeof document === 'undefined') return;
   document.addEventListener('pointerdown', onDocPointerDown, true);
   document.addEventListener('keydown', onKeyDown, true);
 }
 
 function unbindGlobalListeners() {
+  if (typeof document === 'undefined') return;
   document.removeEventListener('pointerdown', onDocPointerDown, true);
   document.removeEventListener('keydown', onKeyDown, true);
 }
@@ -403,6 +406,7 @@ watch(
     }
     if (o) {
       void nextTick(() => {
+        if (typeof window === 'undefined') return;
         bindListenersTimer = window.setTimeout(() => {
           bindListenersTimer = null;
           bindGlobalListeners();

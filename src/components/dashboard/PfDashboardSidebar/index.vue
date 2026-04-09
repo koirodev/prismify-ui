@@ -397,10 +397,11 @@ const mobileToggleProps = computed(() => {
 <style scoped lang="scss">
 .pfDashboardSidebar {
   position: relative;
-  display: none;
-  min-height: 100dvh;
-  min-width: 4rem;
+
   width: var(--width);
+  min-width: 4rem;
+  min-height: 100dvh;
+  display: none;
   flex-shrink: 0;
 }
 
@@ -409,41 +410,44 @@ const mobileToggleProps = computed(() => {
 }
 
 .pfDashboardSidebar__desktop {
+  width: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+
   background: var(--pf-color-surface);
 }
 
 .pfDashboardSidebar__header {
+  padding-inline: var(--pf-dashboard-sidebar-pad-x);
   min-height: var(--pf-dashboard-header-height);
   display: flex;
   align-items: center;
   gap: var(--pf-space-sm);
-  padding-inline: var(--pf-dashboard-sidebar-pad-x);
 }
 
 .pfDashboardSidebar__body {
-  flex: 1;
-  overflow-y: auto;
+  padding: var(--pf-dashboard-sidebar-pad-y) var(--pf-dashboard-sidebar-pad-x);
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: var(--pf-space-md);
-  padding: var(--pf-dashboard-sidebar-pad-y) var(--pf-dashboard-sidebar-pad-x);
+
+  overflow-y: auto;
 }
 
 .pfDashboardSidebar__footer {
+  padding: var(--pf-dashboard-sidebar-pad-y) var(--pf-dashboard-sidebar-pad-x);
   display: flex;
   align-items: center;
   gap: var(--pf-space-sm);
-  padding: var(--pf-dashboard-sidebar-pad-y) var(--pf-dashboard-sidebar-pad-x);
 }
 
 .pfDashboardSidebar__handle {
   position: absolute;
   top: 0;
-  bottom: 0;
   right: 0;
+  bottom: 0;
 }
 
 .pfDashboardSidebar_side_right .pfDashboardSidebar__handle {
@@ -456,24 +460,25 @@ const mobileToggleProps = computed(() => {
 }
 
 .pfDashboardSidebar__mobileContent {
+  height: 100%;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  min-height: 0;
-  height: 100%;
   gap: var(--pf-space-sm);
 }
 
 .pfDashboardSidebar__headerMobile {
+  padding-inline: var(--pf-dashboard-sidebar-pad-x);
   min-height: var(--pf-dashboard-header-height);
   display: flex;
   align-items: center;
-  padding-inline: var(--pf-dashboard-sidebar-pad-x);
 }
 
 .pfDashboardSidebar__bodyMobile {
-  flex: 1;
-  overflow-y: auto;
   padding: var(--pf-dashboard-sidebar-pad-y) var(--pf-dashboard-sidebar-pad-x);
+  flex: 1;
+
+  overflow-y: auto;
 }
 
 .pfDashboardSidebar__footerMobile {

@@ -27,7 +27,12 @@ const props = withDefaults(
     icon?: PfIconName;
     label?: string;
     size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    /** Equal padding; default `true` when using icon-only (see `iconOnly`). */
     square?: boolean;
+    /** Icon-only control: square aspect ratio and centered icon (default `true` when there is no `label`). */
+    iconOnly?: boolean;
+    /** Accessible name for the icon-only control (recommended). */
+    ariaLabel?: string;
     block?: boolean;
     loadingAuto?: boolean;
     avatar?: PfButtonAvatarProps;
@@ -49,6 +54,8 @@ const props = withDefaults(
     label: undefined,
     size: 'md',
     square: false,
+    iconOnly: undefined,
+    ariaLabel: undefined,
     block: false,
     loadingAuto: false,
     avatar: undefined,
@@ -76,6 +83,16 @@ const resolvedIcon = computed(() => {
   return collapsed ? 'angleSmallLeft' : 'angleSmallRight';
 });
 
+const resolvedIconOnly = computed(() => {
+  if (props.iconOnly != null) return props.iconOnly;
+  return !(props.label != null && String(props.label).trim().length > 0);
+});
+
+const resolvedAriaLabel = computed(() => {
+  if (!resolvedIconOnly.value) return undefined;
+  return props.ariaLabel ?? 'Toggle sidebar';
+});
+
 const rootClass = computed(() => [
   'pfDashboardSidebarCollapse',
   attrs.class,
@@ -98,7 +115,10 @@ function onClick(event: MouseEvent): void {
   for (const handler of handlers) {
     void handler(event);
   }
-  sidebar.value?.toggleCollapsed();
+  const api = sidebar.value;
+  if (api) {
+    api.setCollapsed(!api.collapsed.value);
+  }
 }
 </script>
 
@@ -111,6 +131,8 @@ function onClick(event: MouseEvent): void {
     :label="label"
     :size="size"
     :square="square"
+    :icon-only="resolvedIconOnly"
+    :aria-label="resolvedAriaLabel"
     :block="block"
     :loading-auto="loadingAuto"
     :avatar="avatar"

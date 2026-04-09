@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.0-alpha.9] - 2026-04-10
+
+### Fixed
+
+- **PfDrawer**: SSR-safe use of **`document`** and **`window`** (scroll lock, scale wrapper query, global listeners, deferred **`setTimeout`**) so server renders (e.g. **Nuxt**) do not throw **`ReferenceError`** or return HTTP 500 when watchers run without a DOM.
+- **PfDashboardSidebarCollapse**: toggling no longer calls **`toggleCollapsed()`** (which was a no-op unless **`PfDashboardSidebar`** had **`collapsible`**); it now calls **`setCollapsed()`** so the control works with default sidebar props. Default **icon-only** styling (**`iconOnly`**, **`aria-label`**) for a square, centered icon button.
+
 ## [0.1.0-alpha.8] - 2026-04-10
 
 ### Fixed
