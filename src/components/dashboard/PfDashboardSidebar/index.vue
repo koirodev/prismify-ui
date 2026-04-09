@@ -303,8 +303,7 @@ const mobileToggleProps = computed(() => {
         </footer>
       </template>
     </div>
-    -m-d -t-s
-    <div-d-c
+    <div
       v-if="resizable"
       class="pfDashboardSidebar__handle"
       :class="ui?.handle"
@@ -321,7 +320,7 @@ const mobileToggleProps = computed(() => {
           @dblclick="onHandleDoubleClick"
         />
       </slot>
-    </div-d-c>
+    </div>
 
     <div
       v-if="showMobileToggle"

@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.0-alpha.8] - 2026-04-10
+
+### Fixed
+
+- **PfDashboardSidebar**: template used an invalid tag (**`div-d-c`**) where a **`div`** was intended.
+- **PfDashboardSidebar**: removed stray text (**`-m-d -t-s`**) accidentally left in the markup.
+
 ## [0.1.0-alpha.7] - 2026-04-10
 
 ### Fixed
