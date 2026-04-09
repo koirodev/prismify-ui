@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.0-alpha.6] - 2026-04-10
+
+### Fixed
+
+- **PfInput**, **PfTextarea**, **PfPinInput**: **WebKit** autofill (**`:-webkit-autofill`**) no longer shows the default yellow highlight: **`box-shadow`** cleared, backgrounds set to transparent, text color follows **`var(--input-color)`** via **`-webkit-text-fill-color`**, and a long **`background-color`** **transition** keeps Chrome from repainting the autofill background over the themed field.
+
 ## [0.1.0-alpha.5] - 2026-04-09
 
 ### Changed

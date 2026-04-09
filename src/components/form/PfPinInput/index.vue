@@ -833,6 +833,20 @@ defineExpose({
     &:focus-visible {
       outline: none;
     }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      box-shadow: none;
+      background: transparent;
+      background-color: transparent;
+      background-image: none;
+      background-clip: text;
+      -webkit-text-fill-color: var(--input-color);
+
+      transition: background-color 99999999s ease-out;
+    }
   }
 
   &_animated &__native {
@@ -853,15 +867,6 @@ defineExpose({
       color: var(--pf-input-surface);
 
       background-color: var(--pf-input-ring);
-    }
-
-    &:-webkit-autofill,
-    &:-webkit-autofill:hover,
-    &:-webkit-autofill:focus,
-    &:-webkit-autofill:active {
-      -webkit-text-fill-color: transparent;
-
-      transition: background-color 999999s ease-out;
     }
   }
 
