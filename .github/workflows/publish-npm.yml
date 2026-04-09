@@ -1,5 +1,7 @@
 # Publishes to npm when `package.json` version changes on `main`, then creates git tag `v<version>`
-# on GitHub (annotated message = section `## [version]` from CHANGELOG.md, or `Release v<version>` if missing).
+# on GitHub (annotated message = section `## [version]` from CHANGELOG.md, or `Release v<version>` if missing),
+# then a GitHub Release with the same notes (`gh release create --notes-from-tag`).
+# Pre-releases: `npm publish --tag alpha` and `npm dist-tag add … latest` so `npm i` gets the alpha until a stable line exists.
 # Requires repository secret: NPM_TOKEN (npm "Automation" or "Publish" token).
 
 name: Publish to npm
@@ -64,9 +66,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          pkg=$(node -p "require('./package.json').name")
           ver=$(node -p "require('./package.json').version")
           if [[ "$ver" =~ (alpha|beta|rc) ]]; then
             npm publish --tag alpha --access public
+            npm dist-tag add "${pkg}@${ver}" latest
           else
             npm publish --access public
           fi
@@ -98,3 +102,23 @@ jobs:
           printf '%s\n' "$body" > /tmp/pf-tag-message.txt
           git tag -a "$tag" -F /tmp/pf-tag-message.txt
           git push origin "$tag"
+
+      - name: Create GitHub Release
+        if: steps.version.outputs.bump == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ver=$(node -p "require('./package.json').version")
+          tag="v${ver}"
+          git fetch origin --tags 2>/dev/null || true
+          if ! git rev-parse "$tag" >/dev/null 2>&1; then
+            echo "::error::Tag $tag not found after fetch; cannot create release."
+            exit 1
+          fi
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "Release $tag already exists, skipping."
+            exit 0
+          fi
+          gh release create "$tag" --verify-tag --notes-from-tag --title "$tag"
