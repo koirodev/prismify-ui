@@ -1,6 +1,6 @@
 {
   "name": "prismify-ui",
-  "version": "0.1.0-alpha.7",
+  "version": "0.1.0-alpha.8",
   "description": "Vue 3 UI kit (SCSS only). Compatible with Nuxt 4.",
   "license": "MIT",
   "type": "module",
