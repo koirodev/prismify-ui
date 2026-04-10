@@ -119,7 +119,9 @@ describe('PfDropdownMenu', () => {
       global: { plugins: [router] },
       props: {
         open: true,
-        items: [[{ type: 'separator' }, { label: 'Dark mode' }, { label: 'Logout' }]],
+        items: [
+          [{ type: 'separator' }, { label: 'Dark mode' }, { label: 'Logout' }],
+        ],
       },
       slots: {
         default: '<button type="button">trigger</button>',
