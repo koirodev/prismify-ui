@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.0-alpha.15] - 2026-04-10
+
+### Fixed
+
+- **Global typography**: set a shared base font family for all Prismify component blocks (`pf*`) in `src/styles/index.scss`, so components consistently inherit `var(--pf-font-sans)` instead of falling back to mixed browser/default fonts.
+
 ## [0.1.0-alpha.14] - 2026-04-10
 
 ### Fixed

@@ -5,3 +5,7 @@
 *::after {
   box-sizing: border-box;
 }
+
+:where([class^='pf'], [class*=' pf']) {
+  font-family: var(--pf-font-sans);
+}
