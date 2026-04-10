@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.0-alpha.13] - 2026-04-10
+
+### Added
+
+- **PfNavigationMenu**: added **`collapsedSquare`** prop to support square trigger/link controls in collapsed vertical navigation.
+
+### Fixed
+
+- **PfNavigationMenu (labels)**: empty labels are no longer rendered for section rows, top-level items, and child items.
+- **PfNavigationMenu (vertical child list layout)**: when menu orientation is vertical, child lists now force vertical orientation so submenu items are no longer laid out as horizontal two-column content.
+- **PfNavigationMenu (collapsed vertical alignment)**: improved collapsed vertical link/trigger sizing and centering so icon-only items are no longer visually shifted to the right.
+- **PfDashboardSidebar (collapsed spacing)**: collapsed desktop sidebar now removes horizontal paddings in header/body/footer and centers header/footer content for cleaner compact alignment.
+- **Global styles**: applied **`box-sizing: border-box`** to all elements (including pseudo-elements) from the shared style entry for consistent sizing across Prismify components.
+
 ## [0.1.0-alpha.12] - 2026-04-10
 
 ### Added

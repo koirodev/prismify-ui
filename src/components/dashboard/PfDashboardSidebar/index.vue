@@ -478,6 +478,18 @@ const mobileToggleProps = computed(() => {
   gap: var(--pf-space-sm);
 }
 
+.pfDashboardSidebar_collapsed .pfDashboardSidebar__header,
+.pfDashboardSidebar_collapsed .pfDashboardSidebar__body,
+.pfDashboardSidebar_collapsed .pfDashboardSidebar__footer {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.pfDashboardSidebar_collapsed .pfDashboardSidebar__header,
+.pfDashboardSidebar_collapsed .pfDashboardSidebar__footer {
+  justify-content: center;
+}
+
 .pfDashboardSidebar__handle {
   position: absolute;
   top: 0;

@@ -196,6 +196,7 @@ const props = withDefaults(
     labelKey?: string;
     modelValue?: string | string[];
     defaultValue?: string | string[];
+    collapsedSquare?: boolean;
     tooltip?: boolean;
     popover?: boolean;
     ui?: PfNavigationMenuUi;
@@ -221,6 +222,7 @@ const props = withDefaults(
     collapsible: true,
     valueKey: 'value',
     labelKey: 'label',
+    collapsedSquare: false,
     tooltip: true,
     popover: false,
     disabled: false,
@@ -320,6 +322,9 @@ const rootClass = computed(() => [
     ? `pfNavigationMenu_highlightColor_${props.highlightColor}`
     : null,
   props.collapsed ? 'pfNavigationMenu_collapsed' : null,
+  props.collapsed && props.collapsedSquare
+    ? 'pfNavigationMenu_collapsedSquare'
+    : null,
   attrs.class,
   props.ui?.root,
 ]);
@@ -357,6 +362,10 @@ function itemLabel(
 ): string {
   const raw = itemRecord(item)[props.labelKey];
   return raw !== undefined && raw !== null ? String(raw) : '';
+}
+
+function hasItemLabel(item: PfNavigationMenuItem | PfNavigationMenuChildItem): boolean {
+  return itemLabel(item).trim() !== '';
 }
 
 function hasChildren(item: PfNavigationMenuItem): boolean {
@@ -628,7 +637,9 @@ function childListClass(): string[] {
     'pfNavigationMenu__childList',
     ...(props.ui?.childList ? [props.ui.childList] : []),
   ];
-  if (props.contentOrientation === 'vertical') {
+  const effectiveContentOrientation =
+    props.orientation === 'vertical' ? 'vertical' : props.contentOrientation;
+  if (effectiveContentOrientation === 'vertical') {
     base.push('pfNavigationMenu__childList_vertical');
   } else {
     base.push('pfNavigationMenu__childList_horizontal');
@@ -866,7 +877,7 @@ defineExpose({
               :key="itemValue(item, groupIndex, index)"
             >
               <div
-                v-if="isLabelRow(item)"
+                v-if="isLabelRow(item) && hasItemLabel(item)"
                 class="pfNavigationMenu__sectionLabel"
                 :class="[props.ui?.label, item.class]"
               >
@@ -980,7 +991,7 @@ defineExpose({
                     />
                   </span>
                   <span
-                    v-else
+                    v-else-if="hasItemLabel(item)"
                     class="pfNavigationMenu__label"
                     :class="props.ui?.linkLabel"
                   >
@@ -1141,7 +1152,7 @@ defineExpose({
                     />
                   </span>
                   <span
-                    v-else
+                    v-else-if="hasItemLabel(item)"
                     class="pfNavigationMenu__linkInner"
                     :class="props.ui?.linkLabel"
                   >
@@ -1272,6 +1283,7 @@ defineExpose({
                             />
                             <span class="pfNavigationMenu__childText">
                               <span
+                                v-if="hasItemLabel(child)"
                                 class="pfNavigationMenu__childLabel"
                                 :class="props.ui?.childLinkLabel"
                               >
@@ -1324,7 +1336,7 @@ defineExpose({
           :key="itemValue(item, groupIndex, index)"
         >
           <div
-            v-if="isLabelRow(item)"
+            v-if="isLabelRow(item) && hasItemLabel(item)"
             class="pfNavigationMenu__sectionLabel"
             :class="[props.ui?.label, item.class]"
           >
@@ -1378,6 +1390,7 @@ defineExpose({
                 :size="iconSize"
               />
               <span
+                v-if="hasItemLabel(item)"
                 class="pfNavigationMenu__label"
                 :class="props.ui?.linkLabel"
               >
@@ -1424,6 +1437,7 @@ defineExpose({
                     />
                     <span class="pfNavigationMenu__childText">
                       <span
+                        v-if="hasItemLabel(child)"
                         class="pfNavigationMenu__childLabel"
                         :class="props.ui?.childLinkLabel"
                       >
@@ -1466,6 +1480,7 @@ defineExpose({
                 :size="iconSize"
               />
               <span
+                v-if="hasItemLabel(item)"
                 class="pfNavigationMenu__linkInner"
                 :class="props.ui?.linkLabel"
               >
@@ -1519,7 +1534,7 @@ defineExpose({
   }
 
   &_collapsed.pfNavigationMenu_orientation_vertical {
-    width: var(--pf-navigation-menu-collapsed-width);
+    width: 100%;
   }
 }
 
@@ -1772,18 +1787,24 @@ defineExpose({
   margin: 0;
 
   padding: 0;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: var(--pf-navigation-menu-child-gap);
 
   list-style: none;
 
   &_horizontal {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   &_vertical {
-    grid-template-columns: minmax(0, 1fr);
+    flex-direction: column;
   }
+}
+
+.pfNavigationMenu__childList_horizontal .pfNavigationMenu__childItem {
+  flex: 1 1 calc(50% - (var(--pf-navigation-menu-child-gap) / 2));
 }
 
 .pfNavigationMenu__childItem {
@@ -1980,6 +2001,24 @@ defineExpose({
   justify-content: center;
 }
 
+.pfNavigationMenu_collapsed.pfNavigationMenu_orientation_vertical
+  .pfNavigationMenu__trigger,
+.pfNavigationMenu_collapsed.pfNavigationMenu_orientation_vertical
+  .pfNavigationMenu__link {
+  padding-right: 0;
+  padding-left: 0;
+  width: 100%;
+}
+
+.pfNavigationMenu_collapsedSquare.pfNavigationMenu_collapsed.pfNavigationMenu_orientation_vertical
+  .pfNavigationMenu__trigger,
+.pfNavigationMenu_collapsedSquare.pfNavigationMenu_collapsed.pfNavigationMenu_orientation_vertical
+  .pfNavigationMenu__link {
+  padding-top: 0;
+  padding-bottom: 0;
+  min-height: var(--pf-navigation-menu-collapsed-width);
+}
+
 .pfNavigationMenu__link {
   position: relative;
 
@@ -2026,6 +2065,16 @@ defineExpose({
 .pfNavigationMenu__link_vertical {
   width: 100%;
   justify-content: flex-start;
+}
+
+.pfNavigationMenu_collapsed.pfNavigationMenu_orientation_vertical
+  .pfNavigationMenu__link.pfNavigationMenu__link_vertical,
+.pfNavigationMenu_collapsed.pfNavigationMenu_orientation_vertical
+  .pfNavigationMenu__trigger.pfNavigationMenu__trigger_vertical {
+  padding-right: 0;
+  padding-left: 0;
+  width: 100%;
+  justify-content: center;
 }
 
 .pfNavigationMenu__linkInner {
