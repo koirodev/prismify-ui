@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.0-alpha.10] - 2026-04-10
+
+### Added
+
+- **Playground**: added a dashboard shell in **`playground/App.vue`** (group, sidebar, panel, navbar) for local dashboard behavior checks outside Storybook.
+- **Nuxt module**: added **`prismify-ui/nuxt`** for direct Nuxt integration with:
+  - automatic **`Pf*`** component registration,
+  - composable auto-imports (**`usePfApp`**, **`usePfToast`**, **`usePfContentSearch`**, **`usePfKbd`**),
+  - automatic **`prismify-ui/style.css`** injection,
+  - optional plugin install via **`prismifyUI.plugin`**.
+- **Nuxt entry export** in **`package.json`** (**`./nuxt`**) and Nuxt module typing via **`nuxt.d.ts`**.
+- **`docs/installation.md`**: Nuxt 4 setup now documents module-based integration and module options.
+
+### Fixed
+
+- **PfDashboardSidebar**: restoring from persisted state now clamps invalid sizes and preserves expanded width while collapsed, so sidebars can be collapsed and expanded reliably.
+- **PfDashboardSidebarCollapse**: reads sidebar API at interaction time instead of caching a non-reactive lookup, so collapse/expand toggling stays functional after mount timing changes.
+- **PfDashboardResizeHandle**: improved desktop handle visibility with an explicit visual divider while keeping a wider pointer hit area for resizing.
+
 ## [0.1.0-alpha.9] - 2026-04-10
 
 ### Fixed

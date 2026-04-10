@@ -117,6 +117,7 @@ function onClick(event: MouseEvent): void {
     :loading-icon="loadingIcon"
     :disabled="disabled"
     :type="type"
+    icon-only
     v-bind="passthroughAttrs"
     @click="onClick"
   >

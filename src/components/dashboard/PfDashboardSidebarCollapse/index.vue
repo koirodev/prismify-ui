@@ -73,10 +73,13 @@ const props = withDefaults(
 const attrs = useAttrs();
 const group = inject(PF_DASHBOARD_GROUP_KEY, null);
 
-const sidebar = computed(() => group?.getSidebarBySide(props.side) ?? null);
+function getSidebarApi() {
+  return group?.getSidebarBySide(props.side) ?? null;
+}
+
 const resolvedIcon = computed(() => {
   if (props.icon) return props.icon;
-  const collapsed = sidebar.value?.collapsed.value ?? false;
+  const collapsed = getSidebarApi()?.collapsed.value ?? false;
   if (props.side === 'left') {
     return collapsed ? 'angleSmallRight' : 'angleSmallLeft';
   }
@@ -115,7 +118,7 @@ function onClick(event: MouseEvent): void {
   for (const handler of handlers) {
     void handler(event);
   }
-  const api = sidebar.value;
+  const api = getSidebarApi();
   if (api) {
     api.setCollapsed(!api.collapsed.value);
   }

@@ -121,7 +121,11 @@ watch(
       localCollapsed.value = entry.collapsed;
     }
     if (typeof entry.size === 'number' && Number.isFinite(entry.size)) {
-      localSize.value = entry.size;
+      localSize.value = clampSize(
+        entry.size,
+        props.minSize,
+        props.maxSize ?? Number.POSITIVE_INFINITY
+      );
     }
   },
   { immediate: true, deep: true }
@@ -136,6 +140,23 @@ function setOpen(value: boolean): void {
 }
 
 function setCollapsed(value: boolean): void {
+  if (!value) {
+    const nextSize = clampSize(
+      localSize.value ?? props.defaultSize,
+      props.minSize,
+      props.maxSize ?? Number.POSITIVE_INFINITY
+    );
+    if (nextSize <= props.collapsedSize) {
+      localSize.value = clampSize(
+        props.defaultSize ?? props.minSize,
+        props.minSize,
+        props.maxSize ?? Number.POSITIVE_INFINITY
+      );
+    } else {
+      localSize.value = nextSize;
+    }
+  }
+
   emit('update:collapsed', value);
   if (!controlledCollapsed.value) {
     localCollapsed.value = value;
@@ -157,8 +178,10 @@ const effectiveSize = computed(() =>
 );
 
 watch(
-  () => effectiveSize.value,
+  () => localSize.value,
   (size) => {
+    if (typeof size !== 'number' || !Number.isFinite(size)) return;
+    // Keep the expanded width in storage; collapsed state is tracked separately.
     group?.writeState(sidebarId.value, { size });
   }
 );

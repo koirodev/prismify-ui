@@ -382,6 +382,10 @@ defineExpose({
   padding: var(--pf-space-md);
 
   border-bottom: var(--pf-stroke-width) solid var(--pf-border-color);
+
+  > .pfInput {
+    width: 100%;
+  }
 }
 
 .pfDashboardSearch__content {

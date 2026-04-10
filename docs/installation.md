@@ -72,29 +72,39 @@ import PrismifyUI, { prismifyPlugin } from 'prismify-ui';
 
 ## Quick start (Nuxt 4)
 
-### 1. Styles
+### 1. Module
 
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  css: ['prismify-ui/style.css'],
+  modules: ['prismify-ui/nuxt'],
 });
 ```
 
-Order in the **`css`** array matters: load your overrides **after** **`prismify-ui/style.css`** (see **`docs/theming.md`**).
+This module enables:
 
-### 2. Plugin (global registration)
+- automatic registration for all **`Pf*`** components in templates;
+- auto-imports for **`usePfApp`**, **`usePfToast`**, **`usePfContentSearch`**, **`usePfKbd`**;
+- automatic inclusion of **`prismify-ui/style.css`**.
+
+### 2. Optional module config
 
 ```ts
-// plugins/prismify-ui.ts
-import PrismifyUI from 'prismify-ui';
-
-export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.use(PrismifyUI);
+// nuxt.config.ts
+export default defineNuxtConfig({
+  modules: ['prismify-ui/nuxt'],
+  prismifyUI: {
+    css: true, // auto-add prismify-ui/style.css
+    components: true, // auto-register Pf* components
+    composables: true, // auto-import Prismify composables
+    plugin: false, // set true to call nuxtApp.vueApp.use(PrismifyUI)
+  },
 });
 ```
 
-In templates: `<PfButton>…</PfButton>`, `<PfIcon name="plus" size="md" />` — glyph names must come from **`PF_ICON_NAMES`** / **`PfIconName`**, sizes from **`PF_ICON_SIZES`** / **`PfIconSize`** (see the package and **`docs/theming.md`**).
+If you prefer manual setup, you can still register the Vue plugin in **`plugins/prismify-ui.ts`** and include CSS in `nuxt.config.ts`.
+
+In templates: `<PfButton>…</PfButton>`, `<PfIcon name="plus" size="md" />` - glyph names must come from **`PF_ICON_NAMES`** / **`PfIconName`**, sizes from **`PF_ICON_SIZES`** / **`PfIconSize`** (see the package and **`docs/theming.md`**).
 
 Wrap the app root in **`PfApp`** as in the Vue section; use **`<NuxtPage />`** instead of **`RouterView`** where appropriate.
 

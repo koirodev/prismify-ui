@@ -153,7 +153,11 @@ function onClick(event: MouseEvent): void {
   }
 }
 
-.pfDashboardSearchButton_collapsed .pfDashboardSearchButton__trailing {
-  display: none;
+.pfDashboardSearchButton_collapsed {
+  gap: 0;
+
+  .pfDashboardSearchButton__trailing {
+    display: none;
+  }
 }
 </style>

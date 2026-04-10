@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import PfApp from '@/components/layout/PfApp/index.vue';
 import PfButton from '@/components/element/PfButton/index.vue';
+import PfDashboardGroup from '@/components/dashboard/PfDashboardGroup/index.vue';
+import PfDashboardNavbar from '@/components/dashboard/PfDashboardNavbar/index.vue';
+import PfDashboardPanel from '@/components/dashboard/PfDashboardPanel/index.vue';
+import PfDashboardSearch from '@/components/dashboard/PfDashboardSearch/index.vue';
+import PfDashboardSearchButton from '@/components/dashboard/PfDashboardSearchButton/index.vue';
+import PfDashboardSidebar from '@/components/dashboard/PfDashboardSidebar/index.vue';
+import PfDashboardSidebarCollapse from '@/components/dashboard/PfDashboardSidebarCollapse/index.vue';
+import PfDashboardSidebarToggle from '@/components/dashboard/PfDashboardSidebarToggle/index.vue';
 import { usePfToast } from '@/composables/usePfToast';
 
 const toast = usePfToast();
@@ -24,43 +32,50 @@ function showToast() {
 
 <template>
   <PfApp :toaster="{ position: 'bottom-right', duration: 5000, max: 4 }">
-    <div class="playground">
-      <h1 class="playground__title">PfToast playground</h1>
-      <p class="playground__hint">
-        Click the button to show a toast via
-        <code>usePfToast()</code>
-        .
-      </p>
-
-      <PfButton
-        label="Add to calendar"
-        variant="outline"
-        icon="plus"
-        @click="showToast"
-      />
-    </div>
+    <PfDashboardGroup storage-key="prismify-playground" :persistent="false">
+      <PfDashboardSidebar resizable collapsible>
+        <template #header="{ collapsed }">
+          <strong>{{ collapsed ? 'PF' : 'Prismify' }}</strong>
+        </template>
+        <template #default="{ collapsed }">
+          <PfDashboardSearchButton :collapsed="collapsed" />
+        </template>
+      </PfDashboardSidebar>
+      <PfDashboardPanel>
+        <template #header>
+          <PfDashboardNavbar title="Playground">
+            <template #toggle>
+              <PfDashboardSidebarToggle />
+              <PfDashboardSidebarCollapse variant="outline" />
+            </template>
+          </PfDashboardNavbar>
+        </template>
+        <template #body>
+          <div>
+            <p class="playground__hint">
+              Dashboard shell and
+              <code>usePfToast()</code>
+              for local debugging.
+            </p>
+            <PfButton
+              label="Add to calendar"
+              variant="outline"
+              icon="plus"
+              @click="showToast"
+            />
+          </div>
+        </template>
+      </PfDashboardPanel>
+    </PfDashboardGroup>
+    <PfDashboardSearch />
   </PfApp>
 </template>
 
 <style scoped lang="scss">
-.playground {
-  box-sizing: border-box;
-  min-height: 100vh;
-  margin: 0;
-  padding: 1.5rem;
-  font-family: system-ui, sans-serif;
-  background: var(--pf-bg, #f4f4f5);
-  color: var(--pf-fg, #18181b);
-}
-
-.playground__title {
-  margin: 0 0 0.5rem;
-  font-size: 1.25rem;
-}
-
 .playground__hint {
-  margin: 0 0 1.5rem;
+  margin: 0 0 1rem;
+
+  color: var(--pf-color-muted);
   font-size: 0.875rem;
-  opacity: 0.85;
 }
 </style>

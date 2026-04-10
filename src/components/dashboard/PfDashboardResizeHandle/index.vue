@@ -52,6 +52,10 @@ const resolvedTag = computed(() => resolveDynamicComponent(props.as));
 
   display: none;
 
+  box-sizing: border-box;
+  min-width: var(--pf-space-xs);
+  flex-shrink: 0;
+
   cursor: ew-resize;
   user-select: none;
   touch-action: none;
@@ -66,6 +70,23 @@ const resolvedTag = computed(() => resolveDynamicComponent(props.as));
   bottom: 0;
   left: -0.375rem;
   z-index: 1;
+}
+
+.pfDashboardResizeHandle::after {
+  content: '';
+
+  position: absolute;
+  top: var(--pf-space-md);
+  bottom: var(--pf-space-md);
+  left: 50%;
+  z-index: 0;
+
+  width: var(--pf-stroke-width);
+  border-radius: var(--pf-radius-xs);
+
+  background: var(--pf-border-color);
+  transform: translateX(-50%);
+  pointer-events: none;
 }
 
 @media (min-width: 64rem) {
