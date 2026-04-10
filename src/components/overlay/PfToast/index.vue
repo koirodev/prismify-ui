@@ -200,6 +200,7 @@ function onAction(action: PfToastAction, event: MouseEvent) {
 <style scoped lang="scss">
 .pfToast {
   position: relative;
+  box-sizing: border-box;
 
   padding: var(--pf-space-md);
   width: min(100%, var(--pf-toast-width));

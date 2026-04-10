@@ -312,7 +312,8 @@ Below is what each variable is for. See the package sources for current defaults
 | Variable | Purpose |
 | --- | --- |
 | `--pf-dashboard-header-height` | Base height for `PfDashboardNavbar` and `PfDashboardSidebar` header |
-| `--pf-dashboard-sidebar-pad-x`, `--pf-dashboard-sidebar-pad-y` | Inner padding for `PfDashboardSidebar` body/footer and mobile-content |
+| `--pf-dashboard-sidebar-pad-x`, `--pf-dashboard-sidebar-pad-y` | Inner padding for desktop `PfDashboardSidebar` body/footer |
+| `--pf-dashboard-sidebar-mobile-pad-x`, `--pf-dashboard-sidebar-mobile-pad-y` | Inner padding for mobile `PfDashboardSidebar` header/body/footer content |
 | `--pf-dashboard-panel-pad-x`, `--pf-dashboard-panel-pad-y` | Inner padding for `PfDashboardPanel` body and `PfDashboardNavbar`/`PfDashboardToolbar` |
 | `--pf-dashboard-search-max-width` | Max width for `PfDashboardSearch` modal container |
 

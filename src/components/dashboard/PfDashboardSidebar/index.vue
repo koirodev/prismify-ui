@@ -19,6 +19,11 @@ import {
 import { clampSize, pxToUnit, toUnit, unitToPx } from '../shared/resize';
 
 export type PfDashboardSidebarMode = 'drawer' | 'slideover' | 'modal';
+export type PfDashboardSidebarMobileMenuOrientation =
+  | 'top'
+  | 'bottom'
+  | 'left'
+  | 'right';
 
 export interface PfDashboardSidebarUi {
   root?: string;
@@ -52,6 +57,7 @@ const props = withDefaults(
           class: string;
         }>;
     toggleSide?: 'left' | 'right';
+    mobileMenuOrientation?: PfDashboardSidebarMobileMenuOrientation;
     autoClose?: boolean;
     ui?: PfDashboardSidebarUi;
     id?: string;
@@ -70,6 +76,7 @@ const props = withDefaults(
     menu: undefined,
     toggle: true,
     toggleSide: 'left',
+    mobileMenuOrientation: 'bottom',
     autoClose: true,
     ui: undefined,
     id: 'sidebar',
@@ -201,8 +208,11 @@ const rootClass = computed(() => [
 
 const showMobileToggle = computed(() => props.toggle !== false);
 
-const drawerDirection = computed(() =>
-  props.side === 'left' ? 'left' : 'right'
+const drawerDirection = computed(() => props.mobileMenuOrientation);
+const drawerInset = computed(
+  () =>
+    props.mode === 'slideover' &&
+    (drawerDirection.value === 'left' || drawerDirection.value === 'right')
 );
 
 function onMobileClose(): void {
@@ -391,9 +401,11 @@ const mobileToggleProps = computed(() => {
     :direction="drawerDirection"
     :overlay="true"
     :dismissible="true"
-    :inset="mode === 'slideover'"
+    :should-scale-background="false"
+    :inset="drawerInset"
     :ui="{
       content: ['pfDashboardSidebar__drawer', ui?.content].join(' '),
+      container: 'pfDashboardSidebar__drawerContainer',
       overlay: ui?.overlay,
     }"
     @update:open="setOpen"
@@ -491,21 +503,26 @@ const mobileToggleProps = computed(() => {
 }
 
 .pfDashboardSidebar__headerMobile {
-  padding-inline: var(--pf-dashboard-sidebar-pad-x);
+  padding-inline: 0;
   min-height: var(--pf-dashboard-header-height);
   display: flex;
   align-items: center;
 }
 
 .pfDashboardSidebar__bodyMobile {
-  padding: var(--pf-dashboard-sidebar-pad-y) var(--pf-dashboard-sidebar-pad-x);
+  padding: 0;
   flex: 1;
 
   overflow-y: auto;
 }
 
 .pfDashboardSidebar__footerMobile {
-  padding: var(--pf-dashboard-sidebar-pad-y) var(--pf-dashboard-sidebar-pad-x);
+  padding: 0;
+}
+
+:deep(.pfDashboardSidebar__drawerContainer) {
+  padding: 0;
+  gap: 0;
 }
 
 @media (min-width: 64rem) {

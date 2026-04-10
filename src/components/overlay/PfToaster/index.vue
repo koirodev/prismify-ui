@@ -314,4 +314,15 @@ onBeforeUnmount(() => {
 .pfToastStack-leave-active {
   position: absolute;
 }
+
+@media (max-width: 64rem) {
+  .pfToaster_position_top-right,
+  .pfToaster_position_bottom-right {
+    justify-content: center;
+  }
+
+  .pfToaster__list {
+    width: 100%;
+  }
+}
 </style>

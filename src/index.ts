@@ -563,6 +563,7 @@ export type {
 } from './components/dashboard/PfDashboardSearch/index.vue';
 export type { PfDashboardSearchButtonUi } from './components/dashboard/PfDashboardSearchButton/index.vue';
 export type {
+  PfDashboardSidebarMobileMenuOrientation,
   PfDashboardSidebarMode,
   PfDashboardSidebarUi,
 } from './components/dashboard/PfDashboardSidebar/index.vue';

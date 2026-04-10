@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.0-alpha.12] - 2026-04-10
+
+### Added
+
+- **PfDashboardSidebar**: added **`mobileMenuOrientation`** (`top`/`bottom`/`left`/`right`) to control mobile drawer direction independently from desktop sidebar side; default is now **`bottom`**.
+- **Dashboard theme tokens**: added **`--pf-dashboard-sidebar-mobile-pad-x`** and **`--pf-dashboard-sidebar-mobile-pad-y`** for mobile sidebar spacing overrides and documented them in **`docs/theming.md`**.
+
+### Fixed
+
+- **PfDashboardSidebar (mobile drawer layout)**: removed unintended horizontal offset for bottom/top mobile drawer by applying slideover inset only to side directions (**`left`**/**`right`**), disabling background scale for this drawer, and removing extra nested container paddings.
+- **PfDashboardSidebar (mobile content spacing)**: removed inner mobile paddings in header/body/footer wrappers so sidebar slot content aligns to container edges without right shift.
+- **PfToaster (mobile right positions)**: on mobile viewports, **`top-right`** and **`bottom-right`** stacks now align like centered stacks to avoid visual right drift.
+- **PfToast (overflow width)**: added **`box-sizing: border-box`** so toast width includes padding and no longer overflows its container on desktop/mobile.
+
 ## [0.1.0-alpha.11] - 2026-04-10
 
 ### Fixed
