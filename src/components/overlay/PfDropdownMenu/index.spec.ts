@@ -112,4 +112,26 @@ describe('PfDropdownMenu', () => {
     expect(w.emitted('update:searchTerm')).toBeTruthy();
     w.unmount();
   });
+
+  it('does not render interactive item for separator', async () => {
+    const w = mount(PfDropdownMenu, {
+      attachTo: document.body,
+      global: { plugins: [router] },
+      props: {
+        open: true,
+        items: [[{ type: 'separator' }, { label: 'Dark mode' }, { label: 'Logout' }]],
+      },
+      slots: {
+        default: '<button type="button">trigger</button>',
+      },
+    });
+    await flushPromises();
+    await w.vm.$nextTick();
+
+    const buttons = document.body.querySelectorAll(
+      '.pfDropdownMenuItems button.pfDropdownMenuItems__item'
+    );
+    expect(buttons).toHaveLength(2);
+    w.unmount();
+  });
 });

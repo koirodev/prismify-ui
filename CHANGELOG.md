@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.0-alpha.14] - 2026-04-10
+
+### Fixed
+
+- **PfDropdownMenu**: `separator` items no longer render an empty interactive row, so menu groups do not show a blank menu item after a divider.
+
 ## [0.1.0-alpha.13] - 2026-04-10
 
 ### Added

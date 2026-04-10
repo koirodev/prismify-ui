@@ -543,6 +543,7 @@ onBeforeUnmount(() => {
                 {{ itemAt(gi - 1, ii - 1).label }}
               </div>
               <div
+                v-else
                 :ref="(el) => setRowEl(itemKey(gi - 1, ii - 1), el as Element)"
                 class="pfDropdownMenuItems__row"
                 @pointerenter="
