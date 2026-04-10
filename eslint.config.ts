@@ -16,6 +16,7 @@ export default [
       'dist/**',
       'node_modules/**',
       'storybook-static/**',
+      'nuxt.d.ts',
       'src/components/element/PfIcon/paths.ts',
     ],
   },

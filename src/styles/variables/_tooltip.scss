@@ -8,9 +8,9 @@
   --pf-tooltip-radius: var(--pf-radius-sm);
   --pf-tooltip-font-size: var(--pf-font-size-xs);
 
-  --pf-tooltip-surface: var(--pf-color-surface, #ffffff);
-  --pf-tooltip-border: var(--pf-border-color, #e2e8f0);
-  --pf-tooltip-text: var(--pf-color-text, #0f172a);
+  --pf-tooltip-surface: var(--pf-color-surface);
+  --pf-tooltip-border: var(--pf-border-color);
+  --pf-tooltip-text: var(--pf-color-text);
   --pf-tooltip-shadow: 0 var(--pf-space-xs) var(--pf-space-md)
-    color-mix(in srgb, var(--pf-tooltip-text, #18181b) 14%, transparent);
+    color-mix(in srgb, var(--pf-tooltip-text) 14%, transparent);
 }

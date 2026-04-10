@@ -18,7 +18,7 @@
   --pf-navigation-menu-dropdown-padding: 1rem;
   --pf-navigation-menu-dropdown-shadow: var(
     --pf-shadow-lg,
-    0 10px 40px rgb(15 23 42 / 12%)
+    0 10px 40px color-mix(in srgb, var(--pf-color-text) 12%, transparent)
   );
   --pf-navigation-menu-dropdown-border: 1px solid var(--pf-border-color);
   --pf-navigation-menu-child-gap: 0.75rem;

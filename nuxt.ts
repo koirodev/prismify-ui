@@ -146,7 +146,7 @@ export default defineNuxtModule<PrismifyNuxtModuleOptions>({
         COMPOSABLE_EXPORTS.map((composableName) => ({
           name: composableName,
           from: 'prismify-ui',
-        })),
+        }))
       );
     }
   },

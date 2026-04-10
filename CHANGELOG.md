@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.0-alpha.11] - 2026-04-10
+
+### Fixed
+
+- **Lint / Nuxt module files**: ESLint no longer fails on root Nuxt entry files by covering **`nuxt.ts`** in the lint TypeScript project, ignoring **`nuxt.d.ts`** for typed parsing, and aligning formatting in **`nuxt.ts`**.
+
+- **Theme color tokens**: removed hardcoded and fallback color values from shared style variables and component shadows so surfaces, borders, text, focus ring, and elevation now consistently resolve through **`src/styles/variables/_colors.scss`** tokens (updated **`_toast.scss`**, **`_contextMenu.scss`**, **`_tooltip.scss`**, **`_effects.scss`**, **`_navigationMenu.scss`**, **`_tabs.scss`**, and **`PfSwitch`** styles).
+
 ## [0.1.0-alpha.10] - 2026-04-10
 
 ### Added

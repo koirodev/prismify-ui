@@ -12,7 +12,8 @@
   --pf-tabs-link-border-color: var(--pf-border-color);
   --pf-tabs-indicator-duration: 0.2s;
   --pf-tabs-indicator-easing: cubic-bezier(0.4, 0, 0.2, 1);
-  --pf-tabs-indicator-shadow: 0 1px 2px rgb(15 23 42 / 8%);
+  --pf-tabs-indicator-shadow: 0 1px 2px
+    color-mix(in srgb, var(--pf-color-text) 8%, transparent);
   --pf-tabs-content-padding-top: 0.75rem;
   --pf-tabs-focus-ring-offset: 2px;
 }

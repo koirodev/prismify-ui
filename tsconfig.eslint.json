@@ -8,6 +8,8 @@
     ".storybook/**/*.ts",
     "scripts/**/*.ts",
     "*.config.ts",
+    "nuxt.ts",
+    "nuxt.d.ts",
     "eslint.config.ts",
     "playground/**/*.ts"
   ],

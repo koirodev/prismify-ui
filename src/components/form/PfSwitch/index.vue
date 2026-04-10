@@ -888,8 +888,8 @@ label.pfSwitch {
   box-sizing: border-box;
 
   box-shadow:
-    0 1px 2px rgb(0 0 0 / 0.08),
-    0 1px 3px rgb(0 0 0 / 0.06);
+    0 1px 2px color-mix(in srgb, var(--pf-color-text) 8%, transparent),
+    0 1px 3px color-mix(in srgb, var(--pf-color-text) 6%, transparent);
   background-color: var(--pf-color-surface);
   border-radius: 50%;
   will-change: transform;
